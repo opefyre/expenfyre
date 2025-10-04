@@ -72,3 +72,4 @@ jobs:
         projectId: opefyre-expense-tracker
         target: expenfyre
         channelId: live
+        workingDirectory: web

@@ -1,0 +1,555 @@
+<testsuites id="" name="" tests="45" failures="17" skipped="0" errors="0" time="563.9402749999999">
+<testsuite name="simple-ui-tests.spec.ts" timestamp="2025-10-04T22:47:48.358Z" hostname="chromium" tests="9" failures="0" skipped="0" time="156.292" errors="0">
+<testcase name="Simple UI Tests - No Auth Required › should display login page when not authenticated" classname="simple-ui-tests.spec.ts" time="22.091">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle Google OAuth button click" classname="simple-ui-tests.spec.ts" time="21.2">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page structure" classname="simple-ui-tests.spec.ts" time="21.287">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should be mobile responsive" classname="simple-ui-tests.spec.ts" time="21.208">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper meta tags" classname="simple-ui-tests.spec.ts" time="15.237">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle page refresh" classname="simple-ui-tests.spec.ts" time="18.36">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper accessibility features" classname="simple-ui-tests.spec.ts" time="14.613">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle different screen sizes" classname="simple-ui-tests.spec.ts" time="18.177">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page title" classname="simple-ui-tests.spec.ts" time="4.119">
+</testcase>
+</testsuite>
+<testsuite name="simple-ui-tests.spec.ts" timestamp="2025-10-04T22:47:48.358Z" hostname="firefox" tests="9" failures="8" skipped="0" time="454.672" errors="0">
+<testcase name="Simple UI Tests - No Auth Required › should display login page when not authenticated" classname="simple-ui-tests.spec.ts" time="30.455">
+<failure message="simple-ui-tests.spec.ts:4:7 should display login page when not authenticated" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:4:7 › Simple UI Tests - No Auth Required › should display login page when not authenticated 
+
+    Test timeout of 30000ms exceeded while setting up "page".
+
+    Error: browserContext.newPage: Test timeout of 30000ms exceeded.
+]]>
+</failure>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle Google OAuth button click" classname="simple-ui-tests.spec.ts" time="64.73">
+<failure message="simple-ui-tests.spec.ts:17:7 should handle Google OAuth button click" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:17:7 › Simple UI Tests - No Auth Required › should handle Google OAuth button click 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      16 |
+      17 |   test('should handle Google OAuth button click', async ({ page }) => {
+    > 18 |     await page.goto('/')
+         |                ^
+      19 |     
+      20 |     // Check that the Google button is clickable
+      21 |     const googleButton = page.getByText('Continue with Google')
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:18:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+]]>
+</failure>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page structure" classname="simple-ui-tests.spec.ts" time="64.592">
+<failure message="simple-ui-tests.spec.ts:26:7 should have proper page structure" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:26:7 › Simple UI Tests - No Auth Required › should have proper page structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      25 |
+      26 |   test('should have proper page structure', async ({ page }) => {
+    > 27 |     await page.goto('/')
+         |                ^
+      28 |     
+      29 |     // Check for proper HTML structure
+      30 |     await expect(page.locator('h1')).toHaveText('Expenfyre')
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:27:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+]]>
+</failure>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should be mobile responsive" classname="simple-ui-tests.spec.ts" time="64.623">
+<failure message="simple-ui-tests.spec.ts:41:7 should be mobile responsive" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:41:7 › Simple UI Tests - No Auth Required › should be mobile responsive 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      43 |     await page.setViewportSize({ width: 375, height: 667 })
+      44 |     
+    > 45 |     await page.goto('/')
+         |                ^
+      46 |     
+      47 |     // Check that page loads properly on mobile
+      48 |     await expect(page.getByText('Expenfyre')).toBeVisible()
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:45:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+]]>
+</failure>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper meta tags" classname="simple-ui-tests.spec.ts" time="30.788">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle page refresh" classname="simple-ui-tests.spec.ts" time="37.818">
+<failure message="simple-ui-tests.spec.ts:65:7 should handle page refresh" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:65:7 › Simple UI Tests - No Auth Required › should handle page refresh 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.reload: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for navigation until "load"
+
+
+      70 |     
+      71 |     // Refresh the page
+    > 72 |     await page.reload()
+         |                ^
+      73 |     
+      74 |     // Should still show login page
+      75 |     await expect(page.getByText('Expenfyre')).toBeVisible()
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:72:16
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-firefox/video.webm]]
+
+[[ATTACHMENT|simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper accessibility features" classname="simple-ui-tests.spec.ts" time="53.651">
+<failure message="simple-ui-tests.spec.ts:79:7 should have proper accessibility features" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:79:7 › Simple UI Tests - No Auth Required › should have proper accessibility features 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      78 |
+      79 |   test('should have proper accessibility features', async ({ page }) => {
+    > 80 |     await page.goto('/')
+         |                ^
+      81 |     
+      82 |     // Check for proper heading structure
+      83 |     await expect(page.locator('h1')).toHaveText('Expenfyre')
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:80:16
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle different screen sizes" classname="simple-ui-tests.spec.ts" time="56.359">
+<failure message="simple-ui-tests.spec.ts:94:7 should handle different screen sizes" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:94:7 › Simple UI Tests - No Auth Required › should handle different screen sizes 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Continue with Google')
+    Expected: visible
+    Received: undefined
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByText('Continue with Google')
+
+
+       98 |     
+       99 |     await expect(page.getByText('Expenfyre')).toBeVisible()
+    > 100 |     await expect(page.getByText('Continue with Google')).toBeVisible()
+          |                                                          ^
+      101 |     
+      102 |     // Test desktop viewport
+      103 |     await page.setViewportSize({ width: 1200, height: 800 })
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:100:58
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-firefox/video.webm]]
+
+[[ATTACHMENT|simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page title" classname="simple-ui-tests.spec.ts" time="51.656">
+<failure message="simple-ui-tests.spec.ts:110:7 should have proper page title" type="FAILURE">
+<![CDATA[  [firefox] › simple-ui-tests.spec.ts:110:7 › Simple UI Tests - No Auth Required › should have proper page title 
+
+    Test timeout of 30000ms exceeded.
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-firefox/video.webm]]
+
+[[ATTACHMENT|simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="simple-ui-tests.spec.ts" timestamp="2025-10-04T22:47:48.358Z" hostname="webkit" tests="9" failures="9" skipped="0" time="558.668" errors="0">
+<testcase name="Simple UI Tests - No Auth Required › should display login page when not authenticated" classname="simple-ui-tests.spec.ts" time="74.495">
+<failure message="simple-ui-tests.spec.ts:4:7 should display login page when not authenticated" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:4:7 › Simple UI Tests - No Auth Required › should display login page when not authenticated 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Continue with Google')
+    Expected: visible
+    Received: undefined
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for getByText('Continue with Google')
+
+
+       8 |     await expect(page.getByText('Expenfyre')).toBeVisible()
+       9 |     await expect(page.getByText('Sign in to continue')).toBeVisible()
+    > 10 |     await expect(page.getByText('Continue with Google')).toBeVisible()
+         |                                                          ^
+      11 |     
+      12 |     // Check for minimal black & white design
+      13 |     const loginContainer = page.locator('div').filter({ hasText: 'Expenfyre' }).first()
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:10:58
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--85fbf-page-when-not-authenticated-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--85fbf-page-when-not-authenticated-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle Google OAuth button click" classname="simple-ui-tests.spec.ts" time="73.339">
+<failure message="simple-ui-tests.spec.ts:17:7 should handle Google OAuth button click" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:17:7 › Simple UI Tests - No Auth Required › should handle Google OAuth button click 
+
+    Test timeout of 30000ms exceeded.
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--da3a2-e-Google-OAuth-button-click-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--da3a2-e-Google-OAuth-button-click-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page structure" classname="simple-ui-tests.spec.ts" time="64.676">
+<failure message="simple-ui-tests.spec.ts:26:7 should have proper page structure" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:26:7 › Simple UI Tests - No Auth Required › should have proper page structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      25 |
+      26 |   test('should have proper page structure', async ({ page }) => {
+    > 27 |     await page.goto('/')
+         |                ^
+      28 |     
+      29 |     // Check for proper HTML structure
+      30 |     await expect(page.locator('h1')).toHaveText('Expenfyre')
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:27:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--7a8d0--have-proper-page-structure-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--7a8d0--have-proper-page-structure-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should be mobile responsive" classname="simple-ui-tests.spec.ts" time="63.787">
+<failure message="simple-ui-tests.spec.ts:41:7 should be mobile responsive" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:41:7 › Simple UI Tests - No Auth Required › should be mobile responsive 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      43 |     await page.setViewportSize({ width: 375, height: 667 })
+      44 |     
+    > 45 |     await page.goto('/')
+         |                ^
+      46 |     
+      47 |     // Check that page loads properly on mobile
+      48 |     await expect(page.getByText('Expenfyre')).toBeVisible()
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:45:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--5be12-should-be-mobile-responsive-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--5be12-should-be-mobile-responsive-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper meta tags" classname="simple-ui-tests.spec.ts" time="60.077">
+<failure message="simple-ui-tests.spec.ts:57:7 should have proper meta tags" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:57:7 › Simple UI Tests - No Auth Required › should have proper meta tags 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      56 |
+      57 |   test('should have proper meta tags', async ({ page }) => {
+    > 58 |     await page.goto('/')
+         |                ^
+      59 |     
+      60 |     // Check for viewport meta tag
+      61 |     const viewport = page.locator('meta[name="viewport"]').first()
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:58:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--55ae6-hould-have-proper-meta-tags-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--55ae6-hould-have-proper-meta-tags-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle page refresh" classname="simple-ui-tests.spec.ts" time="60.036">
+<failure message="simple-ui-tests.spec.ts:65:7 should handle page refresh" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:65:7 › Simple UI Tests - No Auth Required › should handle page refresh 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      64 |
+      65 |   test('should handle page refresh', async ({ page }) => {
+    > 66 |     await page.goto('/')
+         |                ^
+      67 |     
+      68 |     // Check initial state
+      69 |     await expect(page.getByText('Expenfyre')).toBeVisible()
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:66:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper accessibility features" classname="simple-ui-tests.spec.ts" time="60.029">
+<failure message="simple-ui-tests.spec.ts:79:7 should have proper accessibility features" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:79:7 › Simple UI Tests - No Auth Required › should have proper accessibility features 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      78 |
+      79 |   test('should have proper accessibility features', async ({ page }) => {
+    > 80 |     await page.goto('/')
+         |                ^
+      81 |     
+      82 |     // Check for proper heading structure
+      83 |     await expect(page.locator('h1')).toHaveText('Expenfyre')
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:80:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle different screen sizes" classname="simple-ui-tests.spec.ts" time="60.023">
+<failure message="simple-ui-tests.spec.ts:94:7 should handle different screen sizes" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:94:7 › Simple UI Tests - No Auth Required › should handle different screen sizes 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+       95 |     // Test tablet viewport
+       96 |     await page.setViewportSize({ width: 768, height: 1024 })
+    >  97 |     await page.goto('/')
+          |                ^
+       98 |     
+       99 |     await expect(page.getByText('Expenfyre')).toBeVisible()
+      100 |     await expect(page.getByText('Continue with Google')).toBeVisible()
+        at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:97:16
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page title" classname="simple-ui-tests.spec.ts" time="42.206">
+<failure message="simple-ui-tests.spec.ts:110:7 should have proper page title" type="FAILURE">
+<![CDATA[  [webkit] › simple-ui-tests.spec.ts:110:7 › Simple UI Tests - No Auth Required › should have proper page title 
+
+    Tearing down "context" exceeded the test timeout of 30000ms.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="simple-ui-tests.spec.ts" timestamp="2025-10-04T22:47:48.358Z" hostname="Mobile Chrome" tests="9" failures="0" skipped="0" time="163.189" errors="0">
+<testcase name="Simple UI Tests - No Auth Required › should display login page when not authenticated" classname="simple-ui-tests.spec.ts" time="15.903">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle Google OAuth button click" classname="simple-ui-tests.spec.ts" time="16.356">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page structure" classname="simple-ui-tests.spec.ts" time="16.44">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should be mobile responsive" classname="simple-ui-tests.spec.ts" time="30.61">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper meta tags" classname="simple-ui-tests.spec.ts" time="30.346">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle page refresh" classname="simple-ui-tests.spec.ts" time="34.13">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper accessibility features" classname="simple-ui-tests.spec.ts" time="3.553">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle different screen sizes" classname="simple-ui-tests.spec.ts" time="9.503">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page title" classname="simple-ui-tests.spec.ts" time="6.348">
+</testcase>
+</testsuite>
+<testsuite name="simple-ui-tests.spec.ts" timestamp="2025-10-04T22:47:48.358Z" hostname="Mobile Safari" tests="9" failures="0" skipped="0" time="154.474" errors="0">
+<testcase name="Simple UI Tests - No Auth Required › should display login page when not authenticated" classname="simple-ui-tests.spec.ts" time="34.623">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle Google OAuth button click" classname="simple-ui-tests.spec.ts" time="33.479">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page structure" classname="simple-ui-tests.spec.ts" time="4.79">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should be mobile responsive" classname="simple-ui-tests.spec.ts" time="43.22">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper meta tags" classname="simple-ui-tests.spec.ts" time="5.088">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle page refresh" classname="simple-ui-tests.spec.ts" time="8.401">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper accessibility features" classname="simple-ui-tests.spec.ts" time="4.657">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should handle different screen sizes" classname="simple-ui-tests.spec.ts" time="14.853">
+</testcase>
+<testcase name="Simple UI Tests - No Auth Required › should have proper page title" classname="simple-ui-tests.spec.ts" time="5.363">
+</testcase>
+</testsuite>
+</testsuites>

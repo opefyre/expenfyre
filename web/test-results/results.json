@@ -1,0 +1,2076 @@
+{
+  "config": {
+    "configFile": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/playwright.config.ts",
+    "rootDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.1",
+    "workers": 4,
+    "webServer": {
+      "command": "pnpm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "simple-ui-tests.spec.ts",
+      "file": "simple-ui-tests.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Simple UI Tests - No Auth Required",
+          "file": "simple-ui-tests.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display login page when not authenticated",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22091,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:47:53.508Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-009a3626e15dcf9f1c30",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "should handle Google OAuth button click",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 21200,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:47:53.358Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-320c2e5d1dbe67af4787",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "should have proper page structure",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 21287,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:47:53.895Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-867e44083e7243301902",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "should be mobile responsive",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 21208,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:47:53.587Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-cd396770d30632ee236c",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "should have proper meta tags",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 15237,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:15.585Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-25e82f227c5d6dd79be3",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 57,
+              "column": 7
+            },
+            {
+              "title": "should handle page refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 18360,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:15.796Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-cfc5ca14097798dbde3b",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "should have proper accessibility features",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 14613,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:16.188Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-11f35837fc664874c0b1",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 79,
+              "column": 7
+            },
+            {
+              "title": "should handle different screen sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18177,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:16.574Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-e352c7c21b68260b54f4",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 94,
+              "column": 7
+            },
+            {
+              "title": "should have proper page title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4119,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:30.853Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-0b002fe7e14904d8b19c",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 110,
+              "column": 7
+            },
+            {
+              "title": "should display login page when not authenticated",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 30455,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"page\".\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"page\".\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"page\".\u001b[39m"
+                        },
+                        {
+                          "message": "Error: browserContext.newPage: Test timeout of 30000ms exceeded."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:36.178Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-73d2dba7a71de40479f2",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "should handle Google OAuth button click",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 64730,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 18
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  16 |\n  17 |   test('should handle Google OAuth button click', async ({ page }) => {\n> 18 |     await page.goto('/')\n     |                ^\n  19 |     \n  20 |     // Check that the Google button is clickable\n  21 |     const googleButton = page.getByText('Continue with Google')\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:18:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:41.379Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-16a18d2d63bcc6511957",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "should have proper page structure",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 64592,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 27
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  25 |\n  26 |   test('should have proper page structure', async ({ page }) => {\n> 27 |     await page.goto('/')\n     |                ^\n  28 |     \n  29 |     // Check for proper HTML structure\n  30 |     await expect(page.locator('h1')).toHaveText('Expenfyre')\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:27:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:41.778Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-1f2a7d6b0739d8072b96",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "should be mobile responsive",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 64623,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 45
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  43 |     await page.setViewportSize({ width: 375, height: 667 })\n  44 |     \n> 45 |     await page.goto('/')\n     |                ^\n  46 |     \n  47 |     // Check that page loads properly on mobile\n  48 |     await expect(page.getByText('Expenfyre')).toBeVisible()\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:45:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:48:44.188Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-231b6cf1c45be7e5c744",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "should have proper meta tags",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 30788,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:50:31.020Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-9e216b98262bf09ad603",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 57,
+              "column": 7
+            },
+            {
+              "title": "should handle page refresh",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 37818,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 72
+                          },
+                          "message": "Error: page.reload: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"load\"\u001b[22m\n\n\n  70 |     \n  71 |     // Refresh the page\n> 72 |     await page.reload()\n     |                ^\n  73 |     \n  74 |     // Should still show login page\n  75 |     await expect(page.getByText('Expenfyre')).toBeVisible()\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:72:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:50:45.529Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-firefox/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-firefox/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-bb0edcd89190886d4adc",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "should have proper accessibility features",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 53651,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 80
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  78 |\n  79 |   test('should have proper accessibility features', async ({ page }) => {\n> 80 |     await page.goto('/')\n     |                ^\n  81 |     \n  82 |     // Check for proper heading structure\n  83 |     await expect(page.locator('h1')).toHaveText('Expenfyre')\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:80:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:50:45.557Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-firefox/video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-478cf4e32fd5cdbf21d8",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 79,
+              "column": 7
+            },
+            {
+              "title": "should handle different screen sizes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 56359,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 58,
+                            "line": 100
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Continue with Google')\nExpected: visible\nReceived: undefined\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Continue with Google')\u001b[22m\n\n\n   98 |     \n   99 |     await expect(page.getByText('Expenfyre')).toBeVisible()\n> 100 |     await expect(page.getByText('Continue with Google')).toBeVisible()\n      |                                                          ^\n  101 |     \n  102 |     // Test desktop viewport\n  103 |     await page.setViewportSize({ width: 1200, height: 800 })\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:100:58"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:50:45.767Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-firefox/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-firefox/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-2749365f648e3e08dfe5",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 94,
+              "column": 7
+            },
+            {
+              "title": "should have proper page title",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 51656,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:51:15.537Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-firefox/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-firefox/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-d5113a6b93914042c6ff",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 110,
+              "column": 7
+            },
+            {
+              "title": "should display login page when not authenticated",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 74495,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 58,
+                            "line": 10
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Continue with Google')\nExpected: visible\nReceived: undefined\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Continue with Google')\u001b[22m\n\n\n   8 |     await expect(page.getByText('Expenfyre')).toBeVisible()\n   9 |     await expect(page.getByText('Sign in to continue')).toBeVisible()\n> 10 |     await expect(page.getByText('Continue with Google')).toBeVisible()\n     |                                                          ^\n  11 |     \n  12 |     // Check for minimal black & white design\n  13 |     const loginContainer = page.locator('div').filter({ hasText: 'Expenfyre' }).first()\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:10:58"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:52:02.254Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--85fbf-page-when-not-authenticated-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-f36415044aaa1ca95f2b",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "should handle Google OAuth button click",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 73339,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:52:16.695Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--da3a2-e-Google-OAuth-button-click-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-ea59b632cc74438a4e8e",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "should have proper page structure",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 64676,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 27
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  25 |\n  26 |   test('should have proper page structure', async ({ page }) => {\n> 27 |     await page.goto('/')\n     |                ^\n  28 |     \n  29 |     // Check for proper HTML structure\n  30 |     await expect(page.locator('h1')).toHaveText('Expenfyre')\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:27:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:52:25.838Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--7a8d0--have-proper-page-structure-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-8575c262ee8ab0bfd799",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "should be mobile responsive",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 63787,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 45
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  43 |     await page.setViewportSize({ width: 375, height: 667 })\n  44 |     \n> 45 |     await page.goto('/')\n     |                ^\n  46 |     \n  47 |     // Check that page loads properly on mobile\n  48 |     await expect(page.getByText('Expenfyre')).toBeVisible()\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:45:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:52:25.807Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--5be12-should-be-mobile-responsive-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-945fb6e7e946032631c0",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "should have proper meta tags",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 60077,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 58
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  56 |\n  57 |   test('should have proper meta tags', async ({ page }) => {\n> 58 |     await page.goto('/')\n     |                ^\n  59 |     \n  60 |     // Check for viewport meta tag\n  61 |     const viewport = page.locator('meta[name=\"viewport\"]').first()\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:58:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:53:38.074Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--55ae6-hould-have-proper-meta-tags-webkit/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-c44777570143e498ebb9",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 57,
+              "column": 7
+            },
+            {
+              "title": "should handle page refresh",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 60036,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 66
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  64 |\n  65 |   test('should handle page refresh', async ({ page }) => {\n> 66 |     await page.goto('/')\n     |                ^\n  67 |     \n  68 |     // Check initial state\n  69 |     await expect(page.getByText('Expenfyre')).toBeVisible()\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:66:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:53:38.096Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--98815--should-handle-page-refresh-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-b595fe4073a86d1dc12a",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "should have proper accessibility features",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 60029,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 80
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n  78 |\n  79 |   test('should have proper accessibility features', async ({ page }) => {\n> 80 |     await page.goto('/')\n     |                ^\n  81 |     \n  82 |     // Check for proper heading structure\n  83 |     await expect(page.locator('h1')).toHaveText('Expenfyre')\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:80:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:53:38.002Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--f7b23-oper-accessibility-features-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-71ecac0eb6c1eb073e1d",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 79,
+              "column": 7
+            },
+            {
+              "title": "should handle different screen sizes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 60023,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts",
+                            "column": 16,
+                            "line": 97
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/\", waiting until \"load\"\u001b[22m\n\n\n   95 |     // Test tablet viewport\n   96 |     await page.setViewportSize({ width: 768, height: 1024 })\n>  97 |     await page.goto('/')\n      |                ^\n   98 |     \n   99 |     await expect(page.getByText('Expenfyre')).toBeVisible()\n  100 |     await expect(page.getByText('Continue with Google')).toBeVisible()\n    at /Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/tests/e2e/simple-ui-tests.spec.ts:97:16"
+                        },
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:53:38.253Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--13085-ndle-different-screen-sizes-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-f2102a7832acea6d67e4",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 94,
+              "column": 7
+            },
+            {
+              "title": "should have proper page title",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 42206,
+                      "error": {
+                        "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m",
+                        "stack": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:54:45.298Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/abolfazlshirkavand/Desktop/Projects/expense-tracker/web/test-results/simple-ui-tests-Simple-UI--f88ac-ould-have-proper-page-title-webkit/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-5f9d31b410092ce10a5d",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 110,
+              "column": 7
+            },
+            {
+              "title": "should display login page when not authenticated",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 15903,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:54:45.208Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-d2835dc0edc3fd9c9142",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "should handle Google OAuth button click",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16356,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:54:45.243Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-d9d4c4c737134deb891e",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "should have proper page structure",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 16440,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:54:45.164Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-631307ef1b894bb1dba3",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "should be mobile responsive",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 30610,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:55:02.503Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-841da518ae7daab9478f",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "should have proper meta tags",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 30346,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:55:03.021Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-0f7db927edaba316db0f",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 57,
+              "column": 7
+            },
+            {
+              "title": "should handle page refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 34130,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:55:03.130Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-b7c3fa4489e49995e103",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "should have proper accessibility features",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 24,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3553,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:55:39.883Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-a97160d05a0f1eef044e",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 79,
+              "column": 7
+            },
+            {
+              "title": "should handle different screen sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9503,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:55:33.153Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-6fcb1082a11e60035479",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 94,
+              "column": 7
+            },
+            {
+              "title": "should have proper page title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6348,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:55:33.571Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-b0340f6b4df20677e45b",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 110,
+              "column": 7
+            },
+            {
+              "title": "should display login page when not authenticated",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 26,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 34623,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:06.681Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-2f31a1e86be25f495bd2",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 4,
+              "column": 7
+            },
+            {
+              "title": "should handle Google OAuth button click",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 27,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 33479,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:06.588Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-2fc3194f88298d715138",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "should have proper page structure",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 28,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4790,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:34.331Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-7a5af3c20b88ab45dac1",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "should be mobile responsive",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 25,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 43220,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:06.658Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-bb429a33ab77b816681f",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "should have proper meta tags",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 28,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5088,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:40.623Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-f4052109f9558e4f2db0",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 57,
+              "column": 7
+            },
+            {
+              "title": "should handle page refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 27,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8401,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:41.788Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-c7c01b0236af4b495146",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "should have proper accessibility features",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 26,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4657,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:42.901Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-993270a3ef1f7810b5d7",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 79,
+              "column": 7
+            },
+            {
+              "title": "should handle different screen sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 28,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 14853,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:45.773Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-64d32fc8e81380e9c04b",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 94,
+              "column": 7
+            },
+            {
+              "title": "should have proper page title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 26,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5363,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T22:56:47.607Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23982a1af80d790201a1-64ce09d92e5305d42ec2",
+              "file": "simple-ui-tests.spec.ts",
+              "line": 110,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-04T22:47:37.337Z",
+    "duration": 563940.2749999999,
+    "expected": 28,
+    "skipped": 0,
+    "unexpected": 17,
+    "flaky": 0
+  }
+}

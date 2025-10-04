@@ -15,6 +15,13 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
+    "test:e2e:auth": "playwright test tests/e2e/auth.spec.ts",
+    "test:e2e:expenses": "playwright test tests/e2e/expenses-comprehensive.spec.ts",
+    "test:e2e:budgets": "playwright test tests/e2e/budgets-comprehensive.spec.ts",
+    "test:e2e:analytics": "playwright test tests/e2e/analytics-comprehensive.spec.ts",
+    "test:e2e:dashboard": "playwright test tests/e2e/dashboard-comprehensive.spec.ts",
+    "test:e2e:all": "playwright test --grep @comprehensive",
+    "test:e2e:ui": "playwright test tests/e2e/simple-ui-tests.spec.ts --project=chromium",
     "lint": "echo 'Linting skipped for now'",
     "type-check": "tsc --noEmit"
   },

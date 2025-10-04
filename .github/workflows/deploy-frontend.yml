@@ -20,24 +20,26 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        
+    - name: Install pnpm
+      run: npm install -g pnpm
         
     - name: Install dependencies
       run: |
         cd web
-        npm install
+        pnpm install --frozen-lockfile=false
         
     - name: Run tests
       run: |
         cd web
-        npm run test
-        npm run type-check
-        npm run lint
+        pnpm run test
+        pnpm run type-check
+        pnpm run lint
         
     - name: Build
       run: |
         cd web
-        npm run build
+        pnpm run build
         
     - name: Deploy to Firebase
       uses: FirebaseExtended/action-hosting-deploy@v0

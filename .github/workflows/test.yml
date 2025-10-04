@@ -18,42 +18,44 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        
+    - name: Install pnpm
+      run: npm install -g pnpm
         
     - name: Install dependencies
       run: |
         cd web
-        npm install
+        pnpm install --frozen-lockfile=false
         
     - name: Run TypeScript type checking
       run: |
         cd web
-        npm run type-check
+        pnpm run type-check
         
     - name: Run ESLint
       run: |
         cd web
-        npm run lint
+        pnpm run lint
         
     - name: Run unit tests
       run: |
         cd web
-        npm run test
+        pnpm run test
         
     - name: Run component tests
       run: |
         cd web
-        npm run test:components
+        pnpm run test:components
         
     - name: Run integration tests
       run: |
         cd web
-        npm run test:integration
+        pnpm run test:integration
         
     - name: Run E2E tests
       run: |
         cd web
-        npm run test:e2e
+        pnpm run test:e2e
 
   test-backend:
     runs-on: ubuntu-latest
@@ -66,32 +68,34 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        
+    - name: Install pnpm
+      run: npm install -g pnpm
         
     - name: Install dependencies
       run: |
         cd api
-        npm install
+        pnpm install --frozen-lockfile=false
         
     - name: Run TypeScript type checking
       run: |
         cd api
-        npm run type-check
+        pnpm run type-check
         
     - name: Run ESLint
       run: |
         cd api
-        npm run lint
+        pnpm run lint
         
     - name: Run unit tests
       run: |
         cd api
-        npm run test
+        pnpm run test
         
     - name: Run API tests
       run: |
         cd api
-        npm run test:api
+        pnpm run test:api
 
   test-integration:
     runs-on: ubuntu-latest
@@ -105,15 +109,17 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        
+    - name: Install pnpm
+      run: npm install -g pnpm
         
     - name: Install dependencies
       run: |
-        npm install
+        pnpm install --frozen-lockfile=false
         
     - name: Run full integration tests
       run: |
-        npm run test:integration:full
+        pnpm run test:integration:full
       env:
         TEST_API_URL: https://expense-tracker-api.opefyre.workers.dev
         TEST_FRONTEND_URL: https://expenfyre.web.app

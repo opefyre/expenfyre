@@ -20,19 +20,21 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        
+    - name: Install pnpm
+      run: npm install -g pnpm
         
     - name: Install dependencies
       run: |
         cd api
-        npm install
+        pnpm install --frozen-lockfile=false
         
     - name: Run tests
       run: |
         cd api
-        npm run test
-        npm run type-check
-        npm run lint
+        pnpm run test
+        pnpm run type-check
+        pnpm run lint
         
     - name: Deploy to Cloudflare
       uses: cloudflare/wrangler-action@v3

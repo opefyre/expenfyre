@@ -31,6 +31,8 @@ jobs:
       run: |
         cd web
         pnpm install
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run tests
       run: |
@@ -38,11 +40,15 @@ jobs:
         pnpm run test
         pnpm run type-check
         pnpm run lint
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Build
       run: |
         cd web
         pnpm run build
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Deploy to Firebase
       uses: FirebaseExtended/action-hosting-deploy@v0

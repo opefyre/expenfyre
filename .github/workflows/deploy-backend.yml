@@ -31,6 +31,8 @@ jobs:
       run: |
         cd api
         pnpm install
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run tests
       run: |
@@ -38,6 +40,8 @@ jobs:
         pnpm run test
         pnpm run type-check
         pnpm run lint
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Deploy to Cloudflare
       uses: cloudflare/wrangler-action@v3

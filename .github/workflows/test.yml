@@ -29,36 +29,50 @@ jobs:
       run: |
         cd web
         pnpm install
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run TypeScript type checking
       run: |
         cd web
         pnpm run type-check
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run ESLint
       run: |
         cd web
         pnpm run lint
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run unit tests
       run: |
         cd web
         pnpm run test
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run component tests
       run: |
         cd web
         pnpm run test:components
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run integration tests
       run: |
         cd web
         pnpm run test:integration
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run E2E tests
       run: |
         cd web
         pnpm run test:e2e
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
 
   test-backend:
     runs-on: ubuntu-latest
@@ -82,26 +96,36 @@ jobs:
       run: |
         cd api
         pnpm install
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run TypeScript type checking
       run: |
         cd api
         pnpm run type-check
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run ESLint
       run: |
         cd api
         pnpm run lint
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run unit tests
       run: |
         cd api
         pnpm run test
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run API tests
       run: |
         cd api
         pnpm run test:api
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
 
   test-integration:
     runs-on: ubuntu-latest

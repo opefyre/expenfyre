@@ -48,7 +48,15 @@ jobs:
       run: |
         cd web
         pnpm run test
+        
+    - name: Run type check
+      run: |
+        cd web
         pnpm run type-check
+        
+    - name: Run lint
+      run: |
+        cd web
         pnpm run lint
         
     - name: Build

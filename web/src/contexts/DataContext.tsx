@@ -1,9 +1,9 @@
 'use client'
 
-import React, { createContext, useContext, ReactNode, useMemo } from 'react'
+import React, { createContext, useContext, ReactNode, useMemo, useState, useEffect } from 'react'
 import { User } from '@/lib/auth'
 import { Expense, Budget, Category } from '@/lib/types'
-import { useExpenses, useBudgets, useCategories, cacheUtils } from '@/hooks/useDataFetching'
+import { authenticatedFetch } from '@/lib/auth'
 
 interface DataContextType {
   // Data
@@ -56,106 +56,169 @@ interface DataProviderProps {
 }
 
 export function DataProvider({ children, user }: DataProviderProps) {
-  // Only fetch data when user is authenticated
-  const expensesQuery = useExpenses({}, { enabled: !!user })
-  const budgetsQuery = useBudgets({}, { enabled: !!user })
-  const categoriesQuery = useCategories({ enabled: !!user })
+  // State management
+  const [expenses, setExpenses] = useState<Expense[]>([])
+  const [budgets, setBudgets] = useState<Budget[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  
+  const [loading, setLoading] = useState({
+    expenses: false,
+    budgets: false,
+    categories: false,
+  })
+  
+  const [error, setError] = useState({
+    expenses: null as string | null,
+    budgets: null as string | null,
+    categories: null as string | null,
+  })
+
+  // Fetch functions
+  const fetchExpenses = async () => {
+    if (!user) return
+    setLoading(prev => ({ ...prev, expenses: true }))
+    try {
+      const response = await authenticatedFetch('/api/expenses')
+      if (response.ok) {
+        const data = await response.json()
+        setExpenses(data.expenses || [])
+        setError(prev => ({ ...prev, expenses: null }))
+      } else {
+        setError(prev => ({ ...prev, expenses: 'Failed to fetch expenses' }))
+      }
+    } catch (err) {
+      setError(prev => ({ ...prev, expenses: 'Failed to fetch expenses' }))
+    } finally {
+      setLoading(prev => ({ ...prev, expenses: false }))
+    }
+  }
+
+  const fetchBudgets = async () => {
+    if (!user) return
+    setLoading(prev => ({ ...prev, budgets: true }))
+    try {
+      const response = await authenticatedFetch('/api/budgets')
+      if (response.ok) {
+        const data = await response.json()
+        setBudgets(data.budgets || [])
+        setError(prev => ({ ...prev, budgets: null }))
+      } else {
+        setError(prev => ({ ...prev, budgets: 'Failed to fetch budgets' }))
+      }
+    } catch (err) {
+      setError(prev => ({ ...prev, budgets: 'Failed to fetch budgets' }))
+    } finally {
+      setLoading(prev => ({ ...prev, budgets: false }))
+    }
+  }
+
+  const fetchCategories = async () => {
+    if (!user) return
+    setLoading(prev => ({ ...prev, categories: true }))
+    try {
+      const response = await authenticatedFetch('/api/categories')
+      if (response.ok) {
+        const data = await response.json()
+        setCategories(data.categories || [])
+        setError(prev => ({ ...prev, categories: null }))
+      } else {
+        setError(prev => ({ ...prev, categories: 'Failed to fetch categories' }))
+      }
+    } catch (err) {
+      setError(prev => ({ ...prev, categories: 'Failed to fetch categories' }))
+    } finally {
+      setLoading(prev => ({ ...prev, categories: false }))
+    }
+  }
+
+  // Initial data loading
+  useEffect(() => {
+    if (user) {
+      fetchExpenses()
+      fetchBudgets()
+      fetchCategories()
+    } else {
+      // Clear data when user logs out
+      setExpenses([])
+      setBudgets([])
+      setCategories([])
+    }
+  }, [user])
 
   // Memoized utility functions
   const getExpensesByMonth = useMemo(() => {
     return (month: string) => {
-      return expensesQuery.data?.filter((expense: Expense) => expense.month === month) || []
+      return expenses.filter((expense: Expense) => expense.month === month)
     }
-  }, [expensesQuery.data])
+  }, [expenses])
 
   const getBudgetsByMonth = useMemo(() => {
     return (month: string) => {
-      return budgetsQuery.data?.filter((budget: Budget) => budget.month === month) || []
+      return budgets.filter((budget: Budget) => budget.month === month)
     }
-  }, [budgetsQuery.data])
+  }, [budgets])
 
   const getCategoryById = useMemo(() => {
     return (categoryId: string) => {
-      return categoriesQuery.data?.find((cat: Category) => cat.category_id === categoryId)
+      return categories.find((cat: Category) => cat.category_id === categoryId)
     }
-  }, [categoriesQuery.data])
+  }, [categories])
 
   const getBudgetById = useMemo(() => {
     return (budgetId: string) => {
-      return budgetsQuery.data?.find((budget: Budget) => budget.budget_id === budgetId)
+      return budgets.find((budget: Budget) => budget.budget_id === budgetId)
     }
-  }, [budgetsQuery.data])
+  }, [budgets])
 
-  // Cache management
+  // Cache management (simplified)
   const invalidateCache = (type?: 'expenses' | 'budgets' | 'categories' | 'all') => {
-    if (type === 'all' || !type) {
-      cacheUtils.clear()
-    } else {
-      cacheUtils.clearByPattern(type)
-    }
+    // For now, just refetch the data
+    if (type === 'all' || !type || type === 'expenses') fetchExpenses()
+    if (type === 'all' || !type || type === 'budgets') fetchBudgets()
+    if (type === 'all' || !type || type === 'categories') fetchCategories()
   }
 
-  // Smart refresh helpers that trigger immediate refetch
+  // Smart refresh helpers
   const addExpense = async (expense: Expense) => {
-    // Invalidate cache and immediately refetch
-    invalidateCache('expenses')
-    await expensesQuery.refetch()
+    await fetchExpenses()
   }
 
   const updateExpense = async (expenseId: string, updates: Partial<Expense>) => {
-    // Invalidate cache and immediately refetch
-    invalidateCache('expenses')
-    await expensesQuery.refetch()
+    await fetchExpenses()
   }
 
   const deleteExpense = async (expenseId: string) => {
-    // Invalidate cache and immediately refetch
-    invalidateCache('expenses')
-    await expensesQuery.refetch()
+    await fetchExpenses()
   }
 
   const addBudget = async (budget: Budget) => {
-    // Invalidate cache and immediately refetch
-    invalidateCache('budgets')
-    await budgetsQuery.refetch()
+    await fetchBudgets()
   }
 
   const updateBudget = async (budgetId: string, updates: Partial<Budget>) => {
-    // Invalidate cache and immediately refetch
-    invalidateCache('budgets')
-    await budgetsQuery.refetch()
+    await fetchBudgets()
   }
 
   const deleteBudget = async (budgetId: string) => {
-    // Invalidate cache and immediately refetch
-    invalidateCache('budgets')
-    await budgetsQuery.refetch()
+    await fetchBudgets()
   }
 
   const contextValue: DataContextType = {
     // Data
-    expenses: expensesQuery.data || [],
-    budgets: budgetsQuery.data || [],
-    categories: categoriesQuery.data || [],
+    expenses,
+    budgets,
+    categories,
     
     // Loading states
-    loading: {
-      expenses: expensesQuery.loading,
-      budgets: budgetsQuery.loading,
-      categories: categoriesQuery.loading,
-    },
+    loading,
     
     // Error states
-    error: {
-      expenses: expensesQuery.error,
-      budgets: budgetsQuery.error,
-      categories: categoriesQuery.error,
-    },
+    error,
     
     // Refetch functions
-    refetchExpenses: expensesQuery.refetch,
-    refetchBudgets: budgetsQuery.refetch,
-    refetchCategories: categoriesQuery.refetch,
+    refetchExpenses: fetchExpenses,
+    refetchBudgets: fetchBudgets,
+    refetchCategories: fetchCategories,
     
     // Cache management
     invalidateCache,

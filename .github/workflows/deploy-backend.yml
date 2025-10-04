@@ -48,7 +48,15 @@ jobs:
       run: |
         cd api
         pnpm run test
+        
+    - name: Run type check
+      run: |
+        cd api
         pnpm run type-check
+        
+    - name: Run lint
+      run: |
+        cd api
         pnpm run lint
         
     - name: Deploy to Cloudflare

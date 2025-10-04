@@ -10,36 +10,13 @@ const mockUser: User = {
   created_at: '2024-01-01T00:00:00Z',
 }
 
-// Mock the data fetching hooks
-jest.mock('@/hooks/useDataFetching', () => ({
-  useExpenses: () => ({
-    data: [],
-    loading: false,
-    error: null,
-    refetch: jest.fn(),
-  }),
-  useBudgets: () => ({
-    data: [],
-    loading: false,
-    error: null,
-    refetch: jest.fn(),
-  }),
-  useCategories: () => ({
-    data: [],
-    loading: false,
-    error: null,
-    refetch: jest.fn(),
-  }),
-  cacheUtils: {
-    clear: jest.fn(),
-    clearByPattern: jest.fn(),
-  },
-}))
+// Mock the data fetching hooks - these are now part of DataContext
+// No external mocking needed since hooks are implemented within DataContext
 
 describe('DataContext', () => {
   it('provides data context to children', () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
-      <DataProvider user={mockUser}>{children}</DataProvider>
+      <DataProvider user={null}>{children}</DataProvider>
     )
 
     const { result } = renderHook(() => useData(), { wrapper })
@@ -61,7 +38,7 @@ describe('DataContext', () => {
 
   it('provides utility functions', () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
-      <DataProvider user={mockUser}>{children}</DataProvider>
+      <DataProvider user={null}>{children}</DataProvider>
     )
 
     const { result } = renderHook(() => useData(), { wrapper })
@@ -75,7 +52,7 @@ describe('DataContext', () => {
 
   it('provides data modification helpers', () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
-      <DataProvider user={mockUser}>{children}</DataProvider>
+      <DataProvider user={null}>{children}</DataProvider>
     )
 
     const { result } = renderHook(() => useData(), { wrapper })

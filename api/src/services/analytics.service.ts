@@ -202,8 +202,8 @@ export class AnalyticsService {
         const category = categories.find(c => c.category_id === category_id)
         const percentage = total_expenses > 0 ? (data.total_amount / total_expenses) * 100 : 0
         const remaining = data.budget_amount - data.total_amount
-        
-        return {
+
+    return {
           category_id,
           category_name: category?.name || 'Unknown',
           total_amount: data.total_amount,

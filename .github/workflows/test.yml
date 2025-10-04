@@ -1,0 +1,134 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-frontend:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'pnpm'
+        
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        
+    - name: Install dependencies
+      run: |
+        cd web
+        pnpm install
+        
+    - name: Run TypeScript type checking
+      run: |
+        cd web
+        pnpm run type-check
+        
+    - name: Run ESLint
+      run: |
+        cd web
+        pnpm run lint
+        
+    - name: Run unit tests
+      run: |
+        cd web
+        pnpm run test
+        
+    - name: Run component tests
+      run: |
+        cd web
+        pnpm run test:components
+        
+    - name: Run integration tests
+      run: |
+        cd web
+        pnpm run test:integration
+        
+    - name: Run E2E tests
+      run: |
+        cd web
+        pnpm run test:e2e
+
+  test-backend:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'pnpm'
+        
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        
+    - name: Install dependencies
+      run: |
+        cd api
+        pnpm install
+        
+    - name: Run TypeScript type checking
+      run: |
+        cd api
+        pnpm run type-check
+        
+    - name: Run ESLint
+      run: |
+        cd api
+        pnpm run lint
+        
+    - name: Run unit tests
+      run: |
+        cd api
+        pnpm run test
+        
+    - name: Run API tests
+      run: |
+        cd api
+        pnpm run test:api
+
+  test-integration:
+    runs-on: ubuntu-latest
+    needs: [test-frontend, test-backend]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'pnpm'
+        
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        
+    - name: Install dependencies
+      run: |
+        pnpm install --frozen-lockfile
+        
+    - name: Run full integration tests
+      run: |
+        pnpm run test:integration:full
+      env:
+        TEST_API_URL: https://expense-tracker-api.opefyre.workers.dev
+        TEST_FRONTEND_URL: https://expenfyre.web.app

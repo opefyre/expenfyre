@@ -32,6 +32,13 @@ jobs:
         cd api
         pnpm install
         
+    - name: Run tests
+      run: |
+        cd api
+        pnpm run test
+        pnpm run type-check
+        pnpm run lint
+        
     - name: Deploy to Cloudflare
       uses: cloudflare/wrangler-action@v3
       with:

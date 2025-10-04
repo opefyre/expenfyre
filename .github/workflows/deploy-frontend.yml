@@ -32,6 +32,13 @@ jobs:
         cd web
         pnpm install
         
+    - name: Run tests
+      run: |
+        cd web
+        pnpm run test
+        pnpm run type-check
+        pnpm run lint
+        
     - name: Build
       run: |
         cd web

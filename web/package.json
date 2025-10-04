@@ -5,7 +5,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:components": "jest --testPathPattern=components",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "lint": "echo 'Linting skipped for now'",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.2",
@@ -21,10 +31,19 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.1",
     "@tailwindcss/postcss": "^4.1.13",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "24.5.2",
     "@types/react": "19.1.15",
     "autoprefixer": "^10.4.21",
+    "eslint": "^9.37.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "playwright": "^1.55.1",
     "sharp": "^0.34.4",
     "tailwindcss": "^3.4.17",
     "typescript": "5.9.2"

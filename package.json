@@ -1,0 +1,28 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "pnpm run test:frontend && pnpm run test:backend",
+    "test:frontend": "cd web && pnpm run test",
+    "test:backend": "cd api && pnpm run test",
+    "test:integration:full": "pnpm run test:frontend && pnpm run test:backend",
+    "test:coverage": "pnpm run test:frontend --coverage && pnpm run test:backend --coverage",
+    "lint": "pnpm run lint:frontend && pnpm run lint:backend",
+    "lint:frontend": "cd web && pnpm run lint",
+    "lint:backend": "cd api && pnpm run lint",
+    "type-check": "pnpm run type-check:frontend && pnpm run type-check:backend",
+    "type-check:frontend": "cd web && pnpm run type-check",
+    "type-check:backend": "cd api && pnpm run type-check",
+    "build": "pnpm run build:frontend",
+    "build:frontend": "cd web && pnpm run build",
+    "dev": "pnpm run dev:frontend",
+    "dev:frontend": "cd web && pnpm run dev",
+    "deploy": "pnpm run deploy:frontend && pnpm run deploy:backend",
+    "deploy:frontend": "cd web && pnpm run build && firebase deploy",
+    "deploy:backend": "cd api && pnpm run deploy"
+  },
+  "devDependencies": {
+    "pnpm": "^8.0.0"
+  }
+}

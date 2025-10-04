@@ -253,9 +253,9 @@ function ExpensesContent() {
         try {
           showLoading('Deleting expense...')
           
-          const response = await authenticatedFetch(`/api/expenses/${expenseId}`, {
-            method: 'DELETE'
-          })
+      const response = await authenticatedFetch(`/api/expenses/${expenseId}`, {
+        method: 'DELETE'
+      })
 
           const data = await response.json()
           
@@ -264,8 +264,8 @@ function ExpensesContent() {
             showSuccess('Expense deleted successfully!')
           } else {
             showError(data.error || 'Failed to delete expense')
-          }
-        } catch (error) {
+      }
+    } catch (error) {
           console.error('Error deleting expense:', error)
           showError('Failed to delete expense')
         } finally {
@@ -550,7 +550,7 @@ function ExpensesContent() {
                       <div className="flex items-center space-x-2">
                             <div className="text-right">
                           <p className="text-sm font-medium text-slate-900">
-                            {formatCurrency(expense.amount)}
+                                {formatCurrency(expense.amount)}
                               </p>
                             </div>
                         <div className="flex items-center space-x-1">

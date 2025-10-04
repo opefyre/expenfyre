@@ -20,28 +20,19 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'pnpm'
-        
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 8
+        cache: 'npm'
         
     - name: Install dependencies
       run: |
         cd api
-        pnpm install
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm install
         
     - name: Run tests
       run: |
         cd api
-        pnpm run test
-        pnpm run type-check
-        pnpm run lint
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test
+        npm run type-check
+        npm run lint
         
     - name: Deploy to Cloudflare
       uses: cloudflare/wrangler-action@v3

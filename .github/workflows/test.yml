@@ -18,61 +18,42 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'pnpm'
-        
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 8
+        cache: 'npm'
         
     - name: Install dependencies
       run: |
         cd web
-        pnpm install
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm install
         
     - name: Run TypeScript type checking
       run: |
         cd web
-        pnpm run type-check
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run type-check
         
     - name: Run ESLint
       run: |
         cd web
-        pnpm run lint
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run lint
         
     - name: Run unit tests
       run: |
         cd web
-        pnpm run test
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test
         
     - name: Run component tests
       run: |
         cd web
-        pnpm run test:components
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test:components
         
     - name: Run integration tests
       run: |
         cd web
-        pnpm run test:integration
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test:integration
         
     - name: Run E2E tests
       run: |
         cd web
-        pnpm run test:e2e
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test:e2e
 
   test-backend:
     runs-on: ubuntu-latest
@@ -85,47 +66,32 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'pnpm'
-        
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 8
+        cache: 'npm'
         
     - name: Install dependencies
       run: |
         cd api
-        pnpm install
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm install
         
     - name: Run TypeScript type checking
       run: |
         cd api
-        pnpm run type-check
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run type-check
         
     - name: Run ESLint
       run: |
         cd api
-        pnpm run lint
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run lint
         
     - name: Run unit tests
       run: |
         cd api
-        pnpm run test
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test
         
     - name: Run API tests
       run: |
         cd api
-        pnpm run test:api
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test:api
 
   test-integration:
     runs-on: ubuntu-latest
@@ -139,20 +105,15 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'pnpm'
-        
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 8
+        cache: 'npm'
         
     - name: Install dependencies
       run: |
-        pnpm install --frozen-lockfile
+        npm install
         
     - name: Run full integration tests
       run: |
-        pnpm run test:integration:full
+        npm run test:integration:full
       env:
         TEST_API_URL: https://expense-tracker-api.opefyre.workers.dev
         TEST_FRONTEND_URL: https://expenfyre.web.app

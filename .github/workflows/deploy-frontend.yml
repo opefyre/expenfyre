@@ -20,35 +20,24 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'pnpm'
-        
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 8
+        cache: 'npm'
         
     - name: Install dependencies
       run: |
         cd web
-        pnpm install
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm install
         
     - name: Run tests
       run: |
         cd web
-        pnpm run test
-        pnpm run type-check
-        pnpm run lint
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run test
+        npm run type-check
+        npm run lint
         
     - name: Build
       run: |
         cd web
-        pnpm run build
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        npm run build
         
     - name: Deploy to Firebase
       uses: FirebaseExtended/action-hosting-deploy@v0

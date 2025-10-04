@@ -1,0 +1,20 @@
+{
+  "projects": {},
+  "targets": {
+    "opefyre-expense-tracker": {
+      "hosting": {
+        "expenfyre": [
+          "expenfyre"
+        ]
+      }
+    },
+    "elixiary": {
+      "hosting": {
+        "expenfyre": [
+          "expenfyre"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

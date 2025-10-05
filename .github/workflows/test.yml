@@ -90,26 +90,38 @@ jobs:
     - name: Install dependencies
       run: |
         cd api
+        echo "Installing dependencies..."
         pnpm install --frozen-lockfile
+        echo "Dependencies installed successfully"
+        echo "Checking pnpm version:"
+        pnpm --version
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run TypeScript type checking
       run: |
         cd api
+        echo "Running type check..."
         pnpm run type-check
+        echo "Type check completed"
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run ESLint
       run: |
         cd api
+        echo "Running lint..."
         pnpm run lint
+        echo "Lint completed"
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run unit tests
       run: |
         cd api
+        echo "Running tests..."
         pnpm run test
+        echo "Tests completed"
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
 

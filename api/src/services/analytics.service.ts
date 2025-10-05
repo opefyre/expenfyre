@@ -645,13 +645,18 @@ export class AnalyticsService {
       const endDate = filters?.end_date || new Date().toISOString().split('T')[0]
       const startDate = filters?.start_date || new Date(Date.now() - (months * 30 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0]
 
+      console.log('[ANALYTICS] Date range:', startDate, 'to', endDate)
+
       const expensesResult = await expensesService.getExpenses(userEmail, {
         start_date: startDate,
         end_date: endDate
       })
 
       const expenses = expensesResult.expenses
+      console.log('[ANALYTICS] Found', expenses.length, 'expenses for heatmap')
+      
       const categories = await expensesService.getCategories()
+      console.log('[ANALYTICS] Found', categories.length, 'categories for heatmap')
 
       // Clean expense data (remove leading apostrophes from dates)
       const cleanExpenses = expenses.map(expense => ({
@@ -691,10 +696,12 @@ export class AnalyticsService {
       const start = new Date(startDate)
       const end = new Date(endDate)
 
-      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        const dateStr = d.toISOString().split('T')[0]
+      // Fix the date loop to prevent infinite loops
+      let currentDate = new Date(start)
+      while (currentDate <= end) {
+        const dateStr = currentDate.toISOString().split('T')[0]
         const dayData = dailyMap.get(dateStr)
-        const date = new Date(d)
+        const date = new Date(currentDate)
         const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' })
         const isWeekend = date.getDay() === 0 || date.getDay() === 6
 
@@ -743,6 +750,9 @@ export class AnalyticsService {
             category_breakdown: []
           })
         }
+        
+        // Move to next day
+        currentDate.setDate(currentDate.getDate() + 1)
       }
 
       return result.sort((a, b) => a.date.localeCompare(b.date))

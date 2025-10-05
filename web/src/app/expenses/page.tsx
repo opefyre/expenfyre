@@ -699,6 +699,11 @@ function ExpenseForm({ expense, categories, budgets, getBudgetDisplayName, onSub
     tags: expense?.tags || '',
     receipt_url: expense?.receipt_url || ''
   })
+  
+  // Debug: Log expense data to see if receipt_url is present
+  console.log('ExpenseForm - expense data:', expense)
+  console.log('ExpenseForm - receipt_url:', expense?.receipt_url)
+  console.log('ExpenseForm - formData.receipt_url:', formData.receipt_url)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -863,6 +868,10 @@ interface ExpenseViewModalProps {
 function ExpenseViewModal({ expense, categories, budgets, getBudgetDisplayName, onEdit, onDelete }: ExpenseViewModalProps) {
   const category = categories.find(cat => cat.category_id === expense.category_id)
   const budget = budgets.find(bud => bud.budget_id === expense.budget_id)
+  
+  // Debug: Log expense data to see if receipt_url is present
+  console.log('ExpenseViewModal - expense data:', expense)
+  console.log('ExpenseViewModal - receipt_url:', expense.receipt_url)
 
                 return (
     <div className="space-y-4">

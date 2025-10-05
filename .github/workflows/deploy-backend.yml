@@ -97,6 +97,24 @@ jobs:
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
+    - name: Test Wrangler authentication
+      run: |
+        cd api
+        export CLOUDFLARE_API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
+        export CLOUDFLARE_ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+        echo "Testing Wrangler authentication..."
+        npx wrangler whoami
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        
+    - name: Validate Wrangler config
+      run: |
+        cd api
+        echo "Validating Wrangler configuration..."
+        npx wrangler config validate
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        
     - name: Deploy to Cloudflare
       run: |
         cd api

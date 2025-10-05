@@ -3,10 +3,15 @@ name: Deploy Backend to Cloudflare
 on:
   push:
     branches: [ main ]
-    paths: [ 'api/**' ]
+    paths: 
+      - 'api/**'
+      - '.github/workflows/deploy-backend.yml'
   pull_request:
     branches: [ main ]
-    paths: [ 'api/**' ]
+    paths: 
+      - 'api/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   deploy:
@@ -43,21 +48,29 @@ jobs:
       run: |
         cd api
         pnpm install --frozen-lockfile
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run tests
       run: |
         cd api
         pnpm run test
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run type check
       run: |
         cd api
         pnpm run type-check
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run lint
       run: |
         cd api
         pnpm run lint
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Deploy to Cloudflare
       uses: cloudflare/wrangler-action@v3

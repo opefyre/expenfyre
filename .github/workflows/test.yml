@@ -96,14 +96,20 @@ jobs:
       run: |
         cd api
         pnpm run type-check
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run ESLint
       run: |
         cd api
         pnpm run lint
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run unit tests
       run: |
         cd api
         pnpm run test
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
 

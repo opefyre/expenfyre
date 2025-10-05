@@ -7,6 +7,7 @@ import Layout from '@/components/Layout'
 import { useLoading } from '@/contexts/LoadingContext'
 import { useToastHelpers } from '@/contexts/ToastContext'
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, ScatterChart, Scatter, ComposedChart } from 'recharts'
+import { useMobile } from '@/hooks/useMobile'
 
 interface AnalyticsSummary {
   total_expenses: number
@@ -61,6 +62,32 @@ interface SpendingVelocityData {
   }[]
 }
 
+// Mobile-friendly chart wrapper
+function MobileChartWrapper({ children, title, className = "" }: { 
+  children: React.ReactNode
+  title: string
+  className?: string 
+}) {
+  const { isClient } = useMobile()
+  
+  if (!isClient) {
+    return (
+      <div className={`bg-white rounded-lg border border-slate-200 p-6 ${className}`}>
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
+        <div className="flex items-center justify-center h-64">
+          <div className="text-slate-500">Loading chart...</div>
+        </div>
+      </div>
+    )
+  }
+  
+  return (
+    <div className={`bg-white rounded-lg border border-slate-200 p-6 ${className}`}>
+      <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
+      {children}
+    </div>
+  )
+}
 
 export default function AnalyticsPage() {
   const [user, setUser] = useState<User | null>(null)
@@ -70,6 +97,7 @@ export default function AnalyticsPage() {
   const [monthlyComparison, setMonthlyComparison] = useState<MonthlyComparison[]>([])
   const [budgetPerformance, setBudgetPerformance] = useState<BudgetPerformance[]>([])
   const [spendingVelocity, setSpendingVelocity] = useState<SpendingVelocityData[]>([])
+  const { isMobile, isClient } = useMobile()
 
   const { showLoading, hideLoading } = useLoading()
   const { showSuccess, showError } = useToastHelpers()
@@ -276,71 +304,76 @@ export default function AnalyticsPage() {
             )}
 
             {/* 2. Monthly Overview */}
-            {monthlyComparison.length > 0 && (
-              <div className="bg-white rounded-lg border border-slate-200 p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Monthly Overview</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={monthlyComparison}>
+            {monthlyComparison.length > 0 && isClient && (
+              <MobileChartWrapper title="Monthly Overview">
+                <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
+                  <LineChart data={monthlyComparison} margin={isMobile ? { top: 5, right: 5, left: 5, bottom: 5 } : { top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="month" tick={{ fontSize: 12 }} tickFormatter={formatMonth} />
-                    <YAxis tick={{ fontSize: 12 }} />
+                    <XAxis 
+                      dataKey="month" 
+                      tick={{ fontSize: isMobile ? 10 : 12 }} 
+                      tickFormatter={formatMonth}
+                      interval={isMobile ? "preserveStartEnd" : 0}
+                    />
+                    <YAxis tick={{ fontSize: isMobile ? 10 : 12 }} />
                     <Tooltip 
                       formatter={(value: any) => formatCurrency(value)}
                       labelFormatter={formatMonth}
+                      contentStyle={isMobile ? { fontSize: '12px', padding: '8px' } : {}}
                     />
-                    <Legend />
+                    {!isMobile && <Legend />}
                     <Line 
                       type="monotone" 
                       dataKey="total_expenses" 
                       name="Expenses" 
                       stroke="#ef4444" 
-                      strokeWidth={3}
-                      dot={{ fill: '#ef4444', strokeWidth: 2, r: 4 }}
-                      activeDot={{ r: 6, stroke: '#ef4444', strokeWidth: 2 }}
+                      strokeWidth={isMobile ? 2 : 3}
+                      dot={{ fill: '#ef4444', strokeWidth: 2, r: isMobile ? 3 : 4 }}
+                      activeDot={{ r: isMobile ? 4 : 6, stroke: '#ef4444', strokeWidth: 2 }}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="total_budget" 
                       name="Budget" 
                       stroke="#10b981" 
-                      strokeWidth={3}
-                      dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
-                      activeDot={{ r: 6, stroke: '#10b981', strokeWidth: 2 }}
+                      strokeWidth={isMobile ? 2 : 3}
+                      dot={{ fill: '#10b981', strokeWidth: 2, r: isMobile ? 3 : 4 }}
+                      activeDot={{ r: isMobile ? 4 : 6, stroke: '#10b981', strokeWidth: 2 }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
-              </div>
+              </MobileChartWrapper>
             )}
 
             {/* 3. Spending Velocity & Category Performance */}
-            {spendingVelocity.length > 0 && (
-              <div className="bg-white rounded-lg border border-slate-200 p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Spending Velocity & Transaction Patterns</h3>
+            {spendingVelocity.length > 0 && isClient && (
+              <MobileChartWrapper title="Spending Velocity & Transaction Patterns">
                 <p className="text-sm text-slate-600 mb-4">Daily spending trends and individual transaction analysis over the last 30 days</p>
-                <ResponsiveContainer width="100%" height={400}>
-                  <ComposedChart data={spendingVelocity}>
+                <ResponsiveContainer width="100%" height={isMobile ? 300 : 400}>
+                  <ComposedChart data={spendingVelocity} margin={isMobile ? { top: 5, right: 5, left: 5, bottom: 5 } : { top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                     <XAxis 
                       dataKey="date" 
-                      tick={{ fontSize: 12 }} 
+                      tick={{ fontSize: isMobile ? 10 : 12 }} 
                       tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                      interval={isMobile ? "preserveStartEnd" : 0}
                     />
-                    <YAxis yAxisId="left" tick={{ fontSize: 12 }} />
-                    <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 12 }} />
+                    <YAxis yAxisId="left" tick={{ fontSize: isMobile ? 10 : 12 }} />
+                    <YAxis yAxisId="right" orientation="right" tick={{ fontSize: isMobile ? 10 : 12 }} />
                     <Tooltip 
                       content={({ active, payload, label }) => {
                         if (active && payload && payload.length && label) {
                           const data = payload[0].payload
                           return (
-                            <div className="bg-white p-3 border border-slate-200 rounded-lg shadow-lg">
-                              <p className="font-medium">{new Date(label as string).toLocaleDateString('en-US', { 
+                            <div className={`bg-white p-3 border border-slate-200 rounded-lg shadow-lg ${isMobile ? 'max-w-xs' : ''}`}>
+                              <p className="font-medium text-sm">{new Date(label as string).toLocaleDateString('en-US', { 
                                 weekday: 'short', 
                                 month: 'short', 
                                 day: 'numeric' 
                               })}</p>
                               <p className="text-sm text-slate-600">Daily Spending: {formatCurrency(data.daily_spending)}</p>
                               <p className="text-sm text-slate-600">Transactions: {data.transaction_count}</p>
-                              {data.expenses.length > 0 && (
+                              {data.expenses.length > 0 && !isMobile && (
                                 <div className="mt-2 max-h-32 overflow-y-auto">
                                   <p className="text-xs font-medium text-slate-700 mb-1">Recent transactions:</p>
                                   {data.expenses.slice(0, 3).map((expense: any, index: number) => (
@@ -359,7 +392,7 @@ export default function AnalyticsPage() {
                         return null
                       }}
                     />
-                    <Legend />
+                    {!isMobile && <Legend />}
                     <Area 
                       yAxisId="left"
                       type="monotone" 
@@ -368,26 +401,25 @@ export default function AnalyticsPage() {
                       fill="#3b82f6" 
                       fillOpacity={0.3}
                       stroke="#3b82f6" 
-                      strokeWidth={2}
+                      strokeWidth={isMobile ? 1 : 2}
                     />
                     <Scatter 
                       yAxisId="right"
                       dataKey="transaction_count" 
                       name="Transaction Count"
                       fill="#f59e0b"
-                      r={4}
+                      r={isMobile ? 2 : 4}
                     />
                   </ComposedChart>
                 </ResponsiveContainer>
-              </div>
+              </MobileChartWrapper>
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* 4. Spending by Category */}
-              {categoryBreakdown.length > 0 && (
-                <div className="bg-white rounded-lg border border-slate-200 p-6">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Spending by Category</h3>
-                  <ResponsiveContainer width="100%" height={300}>
+              {categoryBreakdown.length > 0 && isClient && (
+                <MobileChartWrapper title="Spending by Category" className="lg:col-span-1">
+                  <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
                     <PieChart>
                       <Pie
                         data={categoryBreakdown as any}
@@ -395,11 +427,11 @@ export default function AnalyticsPage() {
                         nameKey="category_name"
                         cx="50%"
                         cy="50%"
-                        outerRadius={80}
-                        innerRadius={30}
-                        label={({ category_name, percentage }: any) => 
+                        outerRadius={isMobile ? 60 : 80}
+                        innerRadius={isMobile ? 20 : 30}
+                        label={!isMobile ? ({ category_name, percentage }: any) => 
                           percentage > 5 ? `${category_name}: ${percentage.toFixed(1)}%` : ''
-                        }
+                        : false}
                         labelLine={false}
                       >
                         {categoryBreakdown.map((entry, index) => (
@@ -420,13 +452,12 @@ export default function AnalyticsPage() {
                       />
                     </PieChart>
                   </ResponsiveContainer>
-                </div>
+                </MobileChartWrapper>
               )}
 
               {/* 5. Budget Performance */}
-              {budgetPerformance.length > 0 && (
-                <div className="bg-white rounded-lg border border-slate-200 p-6">
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Budget Performance</h3>
+              {budgetPerformance.length > 0 && isClient && (
+                <MobileChartWrapper title="Budget Performance" className="lg:col-span-1">
                   <div className="space-y-3 max-h-[300px] overflow-y-auto">
                     {budgetPerformance.map((perf, index) => (
                       <div key={index} className="border border-slate-100 rounded-lg p-3">
@@ -457,7 +488,7 @@ export default function AnalyticsPage() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </MobileChartWrapper>
               )}
             </div>
 

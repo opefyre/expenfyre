@@ -24,7 +24,7 @@
     "jest": "^30.2.0",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.4",
-    "wrangler": "^3.78.12"
+    "wrangler": "^4.42.0"
   },
   "dependencies": {
     "hono": "^4.6.3"

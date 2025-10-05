@@ -111,7 +111,7 @@ jobs:
       run: |
         cd api
         echo "Validating Wrangler configuration..."
-        npx wrangler config validate
+        npx wrangler types
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
@@ -123,6 +123,6 @@ jobs:
         export CLOUDFLARE_ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
         echo "API Token length: ${#CLOUDFLARE_API_TOKEN}"
         echo "Account ID: $CLOUDFLARE_ACCOUNT_ID"
-        npx wrangler deploy --verbose
+        npx wrangler deploy --verbose --compatibility-date 2024-09-28
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm

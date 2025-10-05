@@ -1014,30 +1014,6 @@ app.get('/api/analytics/spending-velocity', authMiddleware, requireAuth, async (
   }
 })
 
-// Get spending heatmap data
-app.get('/api/analytics/spending-heatmap', authMiddleware, requireAuth, async (c) => {
-  try {
-  const auth = c.get('auth')
-  const analyticsService = getAnalyticsService(c.env)
-    
-    const filters = {
-      start_date: c.req.query('start_date'),
-      end_date: c.req.query('end_date'),
-      months: c.req.query('months') ? parseInt(c.req.query('months')) : undefined
-    }
-    
-    const heatmap = await analyticsService.getSpendingHeatmap(auth.user.email, filters)
-  
-  return c.json({ 
-      success: true,
-      data: heatmap
-  })
-  } catch (error) {
-    console.error('[ANALYTICS] Error getting spending heatmap:', error)
-    return c.json({ success: false, error: error instanceof Error ? error.message : 'Failed to get spending heatmap' }, 500)
-  }
-})
-
 // Get budget utilization over time
 app.get('/api/analytics/budget-utilization', authMiddleware, requireAuth, async (c) => {
   try {

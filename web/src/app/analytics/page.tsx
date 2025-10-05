@@ -61,21 +61,6 @@ interface SpendingVelocityData {
   }[]
 }
 
-interface HeatmapData {
-  date: string
-  total_amount: number
-  transaction_count: number
-  intensity: number // 0-4 scale for heatmap colors
-  day_of_week: string
-  is_weekend: boolean
-  category_breakdown: {
-    category_id: string
-    category_name: string
-    amount: number
-    percentage: number
-  }[]
-}
-
 
 export default function AnalyticsPage() {
   const [user, setUser] = useState<User | null>(null)
@@ -85,7 +70,6 @@ export default function AnalyticsPage() {
   const [monthlyComparison, setMonthlyComparison] = useState<MonthlyComparison[]>([])
   const [budgetPerformance, setBudgetPerformance] = useState<BudgetPerformance[]>([])
   const [spendingVelocity, setSpendingVelocity] = useState<SpendingVelocityData[]>([])
-  const [heatmapData, setHeatmapData] = useState<HeatmapData[]>([])
 
   const { showLoading, hideLoading } = useLoading()
   const { showSuccess, showError } = useToastHelpers()
@@ -137,16 +121,14 @@ export default function AnalyticsPage() {
         categoryBreakdownRes, 
         monthlyComparisonRes, 
         budgetPerformanceRes,
-        spendingVelocityRes,
-        heatmapRes
+        spendingVelocityRes
       ] = await Promise.all([
         authenticatedFetch(`/api/analytics/summary?${params.toString()}`),
         authenticatedFetch('/api/categories'),
         authenticatedFetch(`/api/analytics/category-breakdown?${params.toString()}`),
         authenticatedFetch(`/api/analytics/monthly-comparison?months=12`),
         authenticatedFetch(`/api/analytics/budget-performance?month=${new Date().toISOString().substring(0, 7)}`),
-        authenticatedFetch(`/api/analytics/spending-velocity?days=30`),
-        authenticatedFetch(`/api/analytics/spending-heatmap?months=6`)
+        authenticatedFetch(`/api/analytics/spending-velocity?days=30`)
       ])
 
       const [
@@ -155,16 +137,14 @@ export default function AnalyticsPage() {
         categoryBreakdownData,
         monthlyComparisonData,
         budgetPerformanceData,
-        spendingVelocityData,
-        heatmapData
+        spendingVelocityData
       ] = await Promise.all([
         summaryRes.json(),
         categoriesRes.json(),
         categoryBreakdownRes.json(),
         monthlyComparisonRes.json(),
         budgetPerformanceRes.json(),
-        spendingVelocityRes.json(),
-        heatmapRes.json()
+        spendingVelocityRes.json()
       ])
 
       if (summaryData.success) setSummary(summaryData.data)
@@ -173,8 +153,6 @@ export default function AnalyticsPage() {
       if (monthlyComparisonData.success) setMonthlyComparison(monthlyComparisonData.data)
       if (budgetPerformanceData.success) setBudgetPerformance(budgetPerformanceData.data)
       if (spendingVelocityData.success) setSpendingVelocity(spendingVelocityData.data)
-      
-      if (heatmapData.success) setHeatmapData(heatmapData.data)
 
     } catch (error) {
       console.error('Error loading analytics:', error)
@@ -404,103 +382,8 @@ export default function AnalyticsPage() {
               </div>
             )}
 
-            {/* 4. Spending Momentum Heatmap */}
-            {heatmapData.length > 0 && (
-              <div className="bg-white rounded-lg border border-slate-200 p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Spending Momentum Heatmap</h3>
-                <p className="text-sm text-slate-600 mb-4">Daily spending intensity over the last 6 months</p>
-                
-                <div className="overflow-x-auto">
-                  <div className="inline-block min-w-full">
-                    {/* Heatmap Grid */}
-                    <div className="flex gap-1 mb-4">
-                      {/* Weekday labels */}
-                      <div className="flex flex-col gap-1 text-xs text-slate-500 w-8">
-                        <div className="h-3"></div>
-                        <div className="h-3 flex items-center">M</div>
-                        <div className="h-3 flex items-center"></div>
-                        <div className="h-3 flex items-center">W</div>
-                        <div className="h-3 flex items-center"></div>
-                        <div className="h-3 flex items-center">F</div>
-                        <div className="h-3 flex items-center"></div>
-                        <div className="h-3 flex items-center">S</div>
-                      </div>
-                      
-                      {/* Heatmap squares */}
-                      <div className="flex gap-1">
-                        {(() => {
-                          // Group data by weeks
-                          const weeks: HeatmapData[][] = []
-                          let currentWeek: HeatmapData[] = []
-                          
-                          heatmapData.forEach((day) => {
-                            const date = new Date(day.date)
-                            const dayOfWeek = date.getDay() // 0 = Sunday, 1 = Monday, etc.
-                            
-                            // Start new week on Sunday
-                            if (dayOfWeek === 0 && currentWeek.length > 0) {
-                              weeks.push([...currentWeek])
-                              currentWeek = []
-                            }
-                            
-                            currentWeek.push(day)
-                          })
-                          
-                          // Add the last week
-                          if (currentWeek.length > 0) {
-                            weeks.push(currentWeek)
-                          }
-                          
-                          return weeks.map((week, weekIndex) => (
-                            <div key={weekIndex} className="flex flex-col gap-1">
-                              {Array.from({ length: 7 }, (_, dayIndex) => {
-                                const dayData = week.find(d => new Date(d.date).getDay() === dayIndex)
-                                const intensity = dayData?.intensity || 0
-                                
-                                const getColorClass = (intensity: number) => {
-                                  switch (intensity) {
-                                    case 0: return 'bg-slate-100'
-                                    case 1: return 'bg-green-200'
-                                    case 2: return 'bg-yellow-300'
-                                    case 3: return 'bg-orange-400'
-                                    case 4: return 'bg-red-500'
-                                    default: return 'bg-slate-100'
-                                  }
-                                }
-                                
-                                return (
-                                  <div
-                                    key={`${weekIndex}-${dayIndex}`}
-                                    className={`w-3 h-3 rounded-sm cursor-pointer hover:ring-2 hover:ring-blue-300 transition-all ${getColorClass(intensity)}`}
-                                    title={dayData ? `${new Date(dayData.date).toLocaleDateString()}: ${formatCurrency(dayData.total_amount)}` : ''}
-                                  />
-                                )
-                              })}
-                            </div>
-                          ))
-                        })()}
-                      </div>
-                    </div>
-                    
-                    {/* Legend */}
-                    <div className="flex items-center justify-between text-xs text-slate-600">
-                      <span>Less</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-3 h-3 bg-slate-100 rounded-sm"></div>
-                        <div className="w-3 h-3 bg-green-200 rounded-sm"></div>
-                        <div className="w-3 h-3 bg-yellow-300 rounded-sm"></div>
-                        <div className="w-3 h-3 bg-orange-400 rounded-sm"></div>
-                        <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
-                      </div>
-                      <span>More</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* 5. Spending by Category */}
+              {/* 4. Spending by Category */}
               {categoryBreakdown.length > 0 && (
                 <div className="bg-white rounded-lg border border-slate-200 p-6">
                   <h3 className="text-lg font-semibold text-slate-900 mb-4">Spending by Category</h3>
@@ -540,7 +423,7 @@ export default function AnalyticsPage() {
                 </div>
               )}
 
-              {/* 6. Budget Performance */}
+              {/* 5. Budget Performance */}
               {budgetPerformance.length > 0 && (
                 <div className="bg-white rounded-lg border border-slate-200 p-6">
                   <h3 className="text-lg font-semibold text-slate-900 mb-4">Budget Performance</h3>

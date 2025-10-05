@@ -696,12 +696,30 @@ function ExpenseForm({ expense, categories, budgets, getBudgetDisplayName, onSub
     amount: expense?.amount || 0,
     description: expense?.description || '',
     date: expense?.date || new Date().toISOString().split('T')[0],
-    tags: expense?.tags || ''
+    tags: expense?.tags || '',
+    receipt_url: expense?.receipt_url || ''
   })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     onSubmit(formData)
+  }
+
+  const handleFileUpload = async (file: File): Promise<string> => {
+    const formData = new FormData()
+    formData.append('file', file)
+    
+    const response = await authenticatedFetch('/api/upload', {
+      method: 'POST',
+      body: formData
+    })
+    
+    if (!response.ok) {
+      throw new Error('Upload failed')
+    }
+    
+    const result = await response.json()
+    return result.data.url
   }
 
   return (
@@ -767,6 +785,16 @@ function ExpenseForm({ expense, categories, budgets, getBudgetDisplayName, onSub
           value={formData.tags}
           onChange={(value) => setFormData(prev => ({ ...prev, tags: value }))}
           placeholder="Enter tags separated by commas"
+        />
+          </div>
+          
+          <div>
+        <label className="block text-sm font-medium text-slate-700 mb-1">Receipt</label>
+        <FileUpload
+          value={formData.receipt_url}
+          onChange={(value) => setFormData(prev => ({ ...prev, receipt_url: value }))}
+          onUpload={handleFileUpload}
+          className="w-full"
         />
           </div>
           

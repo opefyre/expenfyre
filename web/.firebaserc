@@ -1,14 +1,9 @@
 {
-  "projects": {},
+  "projects": {
+    "default": "opefyre-expense-tracker"
+  },
   "targets": {
     "opefyre-expense-tracker": {
-      "hosting": {
-        "expenfyre": [
-          "expenfyre"
-        ]
-      }
-    },
-    "elixiary": {
       "hosting": {
         "expenfyre": [
           "expenfyre"

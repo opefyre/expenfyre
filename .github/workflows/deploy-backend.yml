@@ -102,7 +102,18 @@ jobs:
       run: |
         cd api
         echo "Generating Wrangler types..."
-        npx wrangler types || echo "Types generation failed, continuing..."
+        npx wrangler types
+      continue-on-error: true
+        
+    - name: Print Wrangler log on failure
+      if: failure()
+      run: |
+        echo "Checking for Wrangler logs..."
+        find /home/runner -name "wrangler-*.log" -type f 2>/dev/null | head -5 | while read log; do
+          echo "=== Wrangler log: $log ==="
+          cat "$log" || echo "Could not read log file"
+          echo ""
+        done || echo "No wrangler logs found"
         
     - name: Build and validate
       run: |

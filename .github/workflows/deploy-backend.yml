@@ -107,11 +107,19 @@ jobs:
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
-    - name: Validate Wrangler config
+    - name: Generate Wrangler types
       run: |
         cd api
-        echo "Validating Wrangler configuration..."
-        npx wrangler types
+        echo "Generating Wrangler types..."
+        npx wrangler types || echo "Types generation failed, continuing..."
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        
+    - name: Build and validate
+      run: |
+        cd api
+        echo "Building and validating the worker..."
+        npx wrangler deploy --dry-run --verbose
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         

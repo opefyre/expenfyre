@@ -14,9 +14,9 @@
     "type-check": "echo 'Type checking skipped for now'"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251001.0",
     "@jest/globals": "^30.2.0",
     "@types/jest": "^30.0.0",
+    "@types/node": "^22.0.0",
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.45.0",

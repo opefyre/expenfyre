@@ -3,10 +3,15 @@ name: Deploy Frontend to Firebase
 on:
   push:
     branches: [ main ]
-    paths: [ 'web/**' ]
+    paths: 
+      - 'web/**'
+      - '.github/workflows/deploy-frontend.yml'
   pull_request:
     branches: [ main ]
-    paths: [ 'web/**' ]
+    paths: 
+      - 'web/**'
+      - '.github/workflows/deploy-frontend.yml'
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   build-and-deploy:

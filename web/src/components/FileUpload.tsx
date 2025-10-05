@@ -70,7 +70,13 @@ export default function FileUpload({ value, onChange, onUpload, className = "" }
               </div>
               <div>
                 <p className="text-sm font-medium text-slate-900">Receipt uploaded</p>
-                <p className="text-xs text-slate-500">Click to view</p>
+                <button
+                  type="button"
+                  onClick={() => window.open(value, '_blank')}
+                  className="text-xs text-blue-600 hover:text-blue-800 underline cursor-pointer"
+                >
+                  Click to view
+                </button>
               </div>
             </div>
             <button

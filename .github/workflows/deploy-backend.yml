@@ -72,6 +72,31 @@ jobs:
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
+    - name: Debug Cloudflare deployment
+      run: |
+        cd api
+        echo "Current directory:"
+        pwd
+        echo "Wrangler config files:"
+        ls -la wrangler.toml
+        echo "Source files:"
+        ls -la src/
+        echo "Wrangler version:"
+        npx wrangler --version
+        echo "Checking Cloudflare credentials..."
+        if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+          echo "CLOUDFLARE_API_TOKEN is empty"
+        else
+          echo "CLOUDFLARE_API_TOKEN is set"
+        fi
+        if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+          echo "CLOUDFLARE_ACCOUNT_ID is empty"
+        else
+          echo "CLOUDFLARE_ACCOUNT_ID is set"
+        fi
+      env:
+        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
+        
     - name: Deploy to Cloudflare
       uses: cloudflare/wrangler-action@v3
       with:

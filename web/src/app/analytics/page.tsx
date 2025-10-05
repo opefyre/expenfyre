@@ -174,13 +174,7 @@ export default function AnalyticsPage() {
       if (budgetPerformanceData.success) setBudgetPerformance(budgetPerformanceData.data)
       if (spendingVelocityData.success) setSpendingVelocity(spendingVelocityData.data)
       
-      console.log('Heatmap API response:', heatmapData)
-      if (heatmapData.success) {
-        console.log('Heatmap data loaded:', heatmapData.data.length, 'days')
-        setHeatmapData(heatmapData.data)
-      } else {
-        console.error('Heatmap API failed:', heatmapData.error)
-      }
+      if (heatmapData.success) setHeatmapData(heatmapData.data)
 
     } catch (error) {
       console.error('Error loading analytics:', error)
@@ -411,10 +405,6 @@ export default function AnalyticsPage() {
             )}
 
             {/* 4. Spending Momentum Heatmap */}
-            {(() => {
-              console.log('Rendering heatmap section, data length:', heatmapData.length)
-              return null
-            })()}
             {heatmapData.length > 0 && (
               <div className="bg-white rounded-lg border border-slate-200 p-6">
                 <h3 className="text-lg font-semibold text-slate-900 mb-4">Spending Momentum Heatmap</h3>

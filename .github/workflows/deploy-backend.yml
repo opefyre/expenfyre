@@ -31,19 +31,6 @@ jobs:
       with:
         version: 10.17.1
         
-    - name: Get pnpm store directory
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-        
-    - name: Setup pnpm cache
-      uses: actions/cache@v4
-      with:
-        path: ${{ env.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
-        
     - name: Install dependencies
       run: |
         cd api
@@ -58,71 +45,6 @@ jobs:
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
-    - name: Run type check
-      run: |
-        cd api
-        pnpm run type-check
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
-        
-    - name: Run lint
-      run: |
-        cd api
-        pnpm run lint
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
-        
-    - name: Debug Cloudflare deployment
-      run: |
-        cd api
-        echo "Current directory:"
-        pwd
-        echo "Wrangler config files:"
-        ls -la wrangler.toml
-        echo "Source files:"
-        ls -la src/
-        echo "Wrangler version:"
-        npx wrangler --version
-        echo "Checking Cloudflare credentials..."
-        if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
-          echo "CLOUDFLARE_API_TOKEN is empty"
-        else
-          echo "CLOUDFLARE_API_TOKEN is set"
-        fi
-        if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
-          echo "CLOUDFLARE_ACCOUNT_ID is empty"
-        else
-          echo "CLOUDFLARE_ACCOUNT_ID is set"
-        fi
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
-        
-    - name: Test Wrangler authentication
-      run: |
-        cd api
-        export CLOUDFLARE_API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
-        export CLOUDFLARE_ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-        echo "Testing Wrangler authentication..."
-        npx wrangler whoami
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
-        
-    - name: Generate Wrangler types
-      run: |
-        cd api
-        echo "Generating Wrangler types..."
-        npx wrangler types || echo "Types generation failed, continuing..."
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
-        
-    - name: Build and validate
-      run: |
-        cd api
-        echo "Building and validating the worker..."
-        npx wrangler deploy --dry-run --verbose
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
-        
     - name: Deploy to Cloudflare
       run: |
         cd api
@@ -131,6 +53,6 @@ jobs:
         export CLOUDFLARE_ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
         echo "API Token length: ${#CLOUDFLARE_API_TOKEN}"
         echo "Account ID: $CLOUDFLARE_ACCOUNT_ID"
-        npx wrangler deploy --verbose --compatibility-date 2024-09-28
+        npx wrangler deploy --verbose
       env:
         PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm

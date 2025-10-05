@@ -50,6 +50,34 @@ export interface TopExpenses {
   date: string
 }
 
+export interface SpendingVelocityData {
+  date: string
+  daily_spending: number
+  transaction_count: number
+  expenses: {
+    expense_id: string
+    amount: number
+    category_id: string
+    category_name: string
+    description: string
+  }[]
+}
+
+export interface HeatmapData {
+  date: string
+  total_amount: number
+  transaction_count: number
+  intensity: number // 0-4 scale for heatmap colors
+  day_of_week: string
+  is_weekend: boolean
+  category_breakdown: {
+    category_id: string
+    category_name: string
+    amount: number
+    percentage: number
+  }[]
+}
+
 export interface AnalyticsSummary {
   total_expenses: number
   total_budget: number
@@ -501,6 +529,226 @@ export class AnalyticsService {
     } catch (error) {
       console.error('[ANALYTICS] Error getting daily trend:', error)
       throw new Error('Failed to get daily trend')
+    }
+  }
+
+  // Get spending velocity and category performance data
+  async getSpendingVelocity(userEmail: string, filters?: {
+    start_date?: string
+    end_date?: string
+    days?: number
+  }): Promise<SpendingVelocityData[]> {
+    try {
+      console.log('[ANALYTICS] Getting spending velocity for user:', userEmail)
+
+      const expensesService = new ExpensesService(this.env)
+      
+      // Default to last 30 days if no date range specified
+      const days = filters?.days || 30
+      const endDate = filters?.end_date || new Date().toISOString().split('T')[0]
+      const startDate = filters?.start_date || new Date(Date.now() - (days - 1) * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+
+      const expensesResult = await expensesService.getExpenses(userEmail, {
+        start_date: startDate,
+        end_date: endDate
+      })
+
+      const expenses = expensesResult.expenses
+      const categories = await expensesService.getCategories()
+
+      // Clean expense data (remove leading apostrophes from dates)
+      const cleanExpenses = expenses.map(expense => ({
+        ...expense,
+        date: expense.date.replace(/^'/, '')
+      }))
+
+      // Group expenses by date
+      const dailyMap = new Map<string, {
+        amount: number
+        count: number
+        expenses: typeof cleanExpenses
+      }>()
+
+      cleanExpenses.forEach(exp => {
+        const current = dailyMap.get(exp.date) || { 
+          amount: 0, 
+          count: 0, 
+          expenses: [] 
+        }
+        
+        dailyMap.set(exp.date, {
+          amount: current.amount + exp.amount,
+          count: current.count + 1,
+          expenses: [...current.expenses, exp]
+        })
+      })
+
+      // Generate data for all dates in range (including days with no expenses)
+      const result: SpendingVelocityData[] = []
+      const start = new Date(startDate)
+      const end = new Date(endDate)
+
+      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0]
+        const dayData = dailyMap.get(dateStr)
+
+        if (dayData) {
+          // Add category names to expenses
+          const expensesWithCategories = dayData.expenses.map(exp => {
+            const category = categories.find(c => c.category_id === exp.category_id)
+            return {
+              expense_id: exp.expense_id,
+              amount: exp.amount,
+              category_id: exp.category_id,
+              category_name: category?.name || 'Unknown',
+              description: exp.description
+            }
+          })
+
+          result.push({
+            date: dateStr,
+            daily_spending: dayData.amount,
+            transaction_count: dayData.count,
+            expenses: expensesWithCategories
+          })
+        } else {
+          // No expenses for this day
+          result.push({
+            date: dateStr,
+            daily_spending: 0,
+            transaction_count: 0,
+            expenses: []
+          })
+        }
+      }
+
+      return result.sort((a, b) => a.date.localeCompare(b.date))
+    } catch (error) {
+      console.error('[ANALYTICS] Error getting spending velocity:', error)
+      throw new Error('Failed to get spending velocity')
+    }
+  }
+
+  // Get spending heatmap data for calendar visualization
+  async getSpendingHeatmap(userEmail: string, filters?: {
+    start_date?: string
+    end_date?: string
+    months?: number
+  }): Promise<HeatmapData[]> {
+    try {
+      console.log('[ANALYTICS] Getting spending heatmap for user:', userEmail)
+
+      const expensesService = new ExpensesService(this.env)
+      
+      // Default to last 12 months if no date range specified
+      const months = filters?.months || 12
+      const endDate = filters?.end_date || new Date().toISOString().split('T')[0]
+      const startDate = filters?.start_date || new Date(Date.now() - (months * 30 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0]
+
+      const expensesResult = await expensesService.getExpenses(userEmail, {
+        start_date: startDate,
+        end_date: endDate
+      })
+
+      const expenses = expensesResult.expenses
+      const categories = await expensesService.getCategories()
+
+      // Clean expense data (remove leading apostrophes from dates)
+      const cleanExpenses = expenses.map(expense => ({
+        ...expense,
+        date: expense.date.replace(/^'/, '')
+      }))
+
+      // Group expenses by date
+      const dailyMap = new Map<string, {
+        amount: number
+        count: number
+        expenses: typeof cleanExpenses
+      }>()
+
+      cleanExpenses.forEach(exp => {
+        const current = dailyMap.get(exp.date) || { 
+          amount: 0, 
+          count: 0, 
+          expenses: [] 
+        }
+        
+        dailyMap.set(exp.date, {
+          amount: current.amount + exp.amount,
+          count: current.count + 1,
+          expenses: [...current.expenses, exp]
+        })
+      })
+
+      // Calculate intensity levels based on spending amounts
+      const allAmounts = Array.from(dailyMap.values()).map(d => d.amount).filter(a => a > 0)
+      const maxAmount = Math.max(...allAmounts, 1)
+      const minAmount = Math.min(...allAmounts, 0)
+      const amountRange = maxAmount - minAmount
+
+      // Generate data for all dates in range (including days with no expenses)
+      const result: HeatmapData[] = []
+      const start = new Date(startDate)
+      const end = new Date(endDate)
+
+      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0]
+        const dayData = dailyMap.get(dateStr)
+        const date = new Date(d)
+        const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' })
+        const isWeekend = date.getDay() === 0 || date.getDay() === 6
+
+        if (dayData && dayData.amount > 0) {
+          // Calculate intensity (0-4 scale)
+          let intensity = 0
+          if (amountRange > 0) {
+            const normalizedAmount = (dayData.amount - minAmount) / amountRange
+            intensity = Math.min(4, Math.floor(normalizedAmount * 5))
+          }
+
+          // Calculate category breakdown
+          const categoryMap = new Map<string, number>()
+          dayData.expenses.forEach(exp => {
+            categoryMap.set(exp.category_id, (categoryMap.get(exp.category_id) || 0) + exp.amount)
+          })
+
+          const categoryBreakdown = Array.from(categoryMap.entries()).map(([categoryId, amount]) => {
+            const category = categories.find(c => c.category_id === categoryId)
+            return {
+              category_id: categoryId,
+              category_name: category?.name || 'Unknown',
+              amount,
+              percentage: (amount / dayData.amount) * 100
+            }
+          }).sort((a, b) => b.amount - a.amount)
+
+          result.push({
+            date: dateStr,
+            total_amount: dayData.amount,
+            transaction_count: dayData.count,
+            intensity,
+            day_of_week: dayOfWeek,
+            is_weekend,
+            category_breakdown
+          })
+        } else {
+          // No expenses for this day
+          result.push({
+            date: dateStr,
+            total_amount: 0,
+            transaction_count: 0,
+            intensity: 0,
+            day_of_week: dayOfWeek,
+            is_weekend,
+            category_breakdown: []
+          })
+        }
+      }
+
+      return result.sort((a, b) => a.date.localeCompare(b.date))
+    } catch (error) {
+      console.error('[ANALYTICS] Error getting spending heatmap:', error)
+      throw new Error('Failed to get spending heatmap')
     }
   }
 

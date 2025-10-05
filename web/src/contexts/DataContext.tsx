@@ -81,7 +81,7 @@ export function DataProvider({ children, user }: DataProviderProps) {
       const response = await authenticatedFetch('/api/expenses')
       if (response.ok) {
         const data = await response.json()
-        setExpenses(data.expenses || [])
+        setExpenses(data.data || [])
         setError(prev => ({ ...prev, expenses: null }))
       } else {
         setError(prev => ({ ...prev, expenses: 'Failed to fetch expenses' }))
@@ -100,7 +100,7 @@ export function DataProvider({ children, user }: DataProviderProps) {
       const response = await authenticatedFetch('/api/budgets')
       if (response.ok) {
         const data = await response.json()
-        setBudgets(data.budgets || [])
+        setBudgets(data.data || [])
         setError(prev => ({ ...prev, budgets: null }))
       } else {
         setError(prev => ({ ...prev, budgets: 'Failed to fetch budgets' }))
@@ -119,7 +119,7 @@ export function DataProvider({ children, user }: DataProviderProps) {
       const response = await authenticatedFetch('/api/categories')
       if (response.ok) {
         const data = await response.json()
-        setCategories(data.categories || [])
+        setCategories(data.data || [])
         setError(prev => ({ ...prev, categories: null }))
       } else {
         setError(prev => ({ ...prev, categories: 'Failed to fetch categories' }))

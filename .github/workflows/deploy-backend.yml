@@ -44,33 +44,28 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
         
+    - name: Verify pnpm installation
+      run: pnpm --version
+        
     - name: Install dependencies
       run: |
         cd api
         pnpm install --frozen-lockfile
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run tests
       run: |
         cd api
         pnpm run test
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run type check
       run: |
         cd api
         pnpm run type-check
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Run lint
       run: |
         cd api
         pnpm run lint
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Debug Cloudflare deployment
       run: |
@@ -94,8 +89,6 @@ jobs:
         else
           echo "CLOUDFLARE_ACCOUNT_ID is set"
         fi
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Test Wrangler authentication
       run: |
@@ -104,24 +97,18 @@ jobs:
         export CLOUDFLARE_ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
         echo "Testing Wrangler authentication..."
         npx wrangler whoami
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Generate Wrangler types
       run: |
         cd api
         echo "Generating Wrangler types..."
         npx wrangler types || echo "Types generation failed, continuing..."
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Build and validate
       run: |
         cd api
         echo "Building and validating the worker..."
         npx wrangler deploy --dry-run --verbose
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm
         
     - name: Deploy to Cloudflare
       run: |
@@ -132,5 +119,3 @@ jobs:
         echo "API Token length: ${#CLOUDFLARE_API_TOKEN}"
         echo "Account ID: $CLOUDFLARE_ACCOUNT_ID"
         npx wrangler deploy --verbose --compatibility-date 2024-09-28
-      env:
-        PATH: ${{ env.PATH }}:${{ env.HOME }}/.local/share/pnpm

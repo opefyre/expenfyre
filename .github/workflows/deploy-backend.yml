@@ -120,7 +120,7 @@ jobs:
       run: |
         cd api
         echo "Building and validating the worker..."
-        npx wrangler deploy --dry-run --verbose
+        npx wrangler deploy --dry-run
         
     - name: Deploy to Cloudflare
       run: |
@@ -134,7 +134,7 @@ jobs:
         echo "Wrangler config:"
         cat wrangler.toml
         echo "Deploying with simplified command..."
-        npx wrangler deploy --verbose
+        npx wrangler deploy
         
     - name: Print Wrangler logs after deployment
       if: always()

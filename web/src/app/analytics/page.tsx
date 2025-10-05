@@ -62,17 +62,29 @@ interface SpendingVelocityData {
   }[]
 }
 
-// Mobile-friendly chart wrapper with explicit dimensions and fallback
-function MobileChartWrapper({ children, title, className = "", height = 300, mobileFallback }: { 
+// Chart wrapper with proper dimensions and mobile rendering fix
+function ChartWrapper({ children, title, className = "", height = 300 }: { 
   children: React.ReactNode
   title: string
   className?: string
   height?: number
-  mobileFallback?: React.ReactNode
 }) {
   const { isClient, isMobile } = useMobile()
+  const [isReady, setIsReady] = useState(false)
   
-  if (!isClient) {
+  useEffect(() => {
+    if (isClient) {
+      // Add a small delay for mobile to ensure proper rendering
+      const delay = isMobile ? 100 : 0
+      const timer = setTimeout(() => {
+        setIsReady(true)
+      }, delay)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [isClient, isMobile])
+  
+  if (!isClient || !isReady) {
     return (
       <div className={`bg-white rounded-lg border border-slate-200 p-6 ${className}`} style={{ minHeight: `${height}px` }}>
         <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
@@ -83,20 +95,17 @@ function MobileChartWrapper({ children, title, className = "", height = 300, mob
     )
   }
   
-  // On mobile, show fallback if provided, otherwise try to render chart
-  if (isMobile && mobileFallback) {
-    return (
-      <div className={`bg-white rounded-lg border border-slate-200 p-6 ${className}`}>
-        <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
-        {mobileFallback}
-      </div>
-    )
-  }
-  
   return (
     <div className={`bg-white rounded-lg border border-slate-200 p-6 ${className}`} style={{ minHeight: `${height}px` }}>
       <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
-      <div style={{ width: '100%', height: `${height - 60}px` }}>
+      <div 
+        style={{ 
+          width: '100%', 
+          height: `${height - 60}px`, 
+          position: 'relative',
+          minHeight: `${height - 60}px`
+        }}
+      >
         {children}
       </div>
     </div>
@@ -319,34 +328,11 @@ export default function AnalyticsPage() {
 
             {/* 2. Monthly Overview */}
             {monthlyComparison.length > 0 && isClient && (
-              <MobileChartWrapper 
+              <ChartWrapper 
                 title="Monthly Overview" 
                 height={isMobile ? 250 : 300}
-                mobileFallback={
-                  <div className="space-y-3">
-                    {monthlyComparison.slice(0, 6).map((item, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-slate-900">{formatMonth(item.month)}</p>
-                          <div className="flex items-center space-x-4 mt-1">
-                            <span className="text-xs text-red-600">Expenses: {formatCurrency(item.total_expenses)}</span>
-                            <span className="text-xs text-green-600">Budget: {formatCurrency(item.total_budget)}</span>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className={`text-sm font-medium ${item.total_expenses > item.total_budget ? 'text-red-600' : 'text-green-600'}`}>
-                            {item.total_expenses > item.total_budget ? 'Over Budget' : 'Under Budget'}
-                          </div>
-                          <div className="text-xs text-slate-500">
-                            {formatCurrency(Math.abs(item.total_expenses - item.total_budget))}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                }
               >
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minHeight={isMobile ? 200 : 250} key={`monthly-${isMobile}`}>
                   <LineChart data={monthlyComparison} margin={isMobile ? { top: 5, right: 5, left: 5, bottom: 5 } : { top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                     <XAxis 
@@ -382,45 +368,17 @@ export default function AnalyticsPage() {
                     />
                   </LineChart>
                 </ResponsiveContainer>
-              </MobileChartWrapper>
+              </ChartWrapper>
             )}
 
             {/* 3. Spending Velocity & Category Performance */}
             {spendingVelocity.length > 0 && isClient && (
-              <MobileChartWrapper 
+              <ChartWrapper 
                 title="Spending Velocity & Transaction Patterns" 
                 height={isMobile ? 350 : 450}
-                mobileFallback={
-                  <div className="space-y-3">
-                    <p className="text-sm text-slate-600 mb-4">Daily spending trends and individual transaction analysis over the last 30 days</p>
-                    {spendingVelocity.slice(0, 7).map((item, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-slate-900">
-                            {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                          </p>
-                          <div className="flex items-center space-x-4 mt-1">
-                            <span className="text-xs text-blue-600">Daily: {formatCurrency(item.daily_spending)}</span>
-                            <span className="text-xs text-orange-600">Transactions: {item.transaction_count}</span>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm font-medium text-slate-700">
-                            {item.expenses.length > 0 ? `${item.expenses.length} expenses` : 'No expenses'}
-                          </div>
-                          {item.expenses.length > 0 && (
-                            <div className="text-xs text-slate-500">
-                              Largest: {formatCurrency(Math.max(...item.expenses.map(e => e.amount)))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                }
               >
                 <p className="text-sm text-slate-600 mb-4">Daily spending trends and individual transaction analysis over the last 30 days</p>
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minHeight={isMobile ? 280 : 350} key={`velocity-${isMobile}`}>
                   <ComposedChart data={spendingVelocity} margin={isMobile ? { top: 5, right: 5, left: 5, bottom: 5 } : { top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                     <XAxis 
@@ -483,40 +441,18 @@ export default function AnalyticsPage() {
                     />
                   </ComposedChart>
                 </ResponsiveContainer>
-              </MobileChartWrapper>
+              </ChartWrapper>
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* 4. Spending by Category */}
               {categoryBreakdown.length > 0 && isClient && (
-                <MobileChartWrapper 
+                <ChartWrapper 
                   title="Spending by Category" 
                   className="lg:col-span-1" 
                   height={isMobile ? 250 : 300}
-                  mobileFallback={
-                    <div className="space-y-3">
-                      {categoryBreakdown.map((item, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                          <div className="flex items-center space-x-3">
-                            <div 
-                              className="w-4 h-4 rounded-full" 
-                              style={{ backgroundColor: COLORS[index % COLORS.length] }}
-                            ></div>
-                            <div>
-                              <p className="text-sm font-medium text-slate-900">{item.category_name}</p>
-                              <p className="text-xs text-slate-500">{item.percentage.toFixed(1)}% of total</p>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm font-semibold text-slate-900">{formatCurrency(item.total_amount)}</p>
-                            <p className="text-xs text-slate-500">{item.expense_count} transactions</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  }
                 >
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height="100%" minHeight={isMobile ? 200 : 250} key={`category-${isMobile}`}>
                     <PieChart>
                       <Pie
                         data={categoryBreakdown as any}
@@ -549,12 +485,12 @@ export default function AnalyticsPage() {
                       />
                     </PieChart>
                   </ResponsiveContainer>
-                </MobileChartWrapper>
+                </ChartWrapper>
               )}
 
               {/* 5. Budget Performance */}
               {budgetPerformance.length > 0 && isClient && (
-                <MobileChartWrapper title="Budget Performance" className="lg:col-span-1">
+                <ChartWrapper title="Budget Performance" className="lg:col-span-1">
                   <div className="space-y-3 max-h-[300px] overflow-y-auto">
                     {budgetPerformance.map((perf, index) => (
                       <div key={index} className="border border-slate-100 rounded-lg p-3">
@@ -585,7 +521,7 @@ export default function AnalyticsPage() {
                       </div>
                     ))}
                   </div>
-                </MobileChartWrapper>
+                </ChartWrapper>
               )}
             </div>
 

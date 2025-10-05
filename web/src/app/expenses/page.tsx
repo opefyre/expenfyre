@@ -699,11 +699,6 @@ function ExpenseForm({ expense, categories, budgets, getBudgetDisplayName, onSub
     tags: expense?.tags || '',
     receipt_url: expense?.receipt_url || ''
   })
-  
-  // Debug: Log expense data to see if receipt_url is present
-  console.log('ExpenseForm - expense data:', expense)
-  console.log('ExpenseForm - receipt_url:', expense?.receipt_url)
-  console.log('ExpenseForm - formData.receipt_url:', formData.receipt_url)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -795,39 +790,6 @@ function ExpenseForm({ expense, categories, budgets, getBudgetDisplayName, onSub
           
           <div>
         <label className="block text-sm font-medium text-slate-700 mb-1">Receipt</label>
-        
-        {/* Show existing receipt if available */}
-        {formData.receipt_url && (
-          <div className="mb-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-slate-200 rounded-lg flex items-center justify-center">
-                <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-slate-900">Current receipt</p>
-                <button
-                  type="button"
-                  onClick={() => window.open(formData.receipt_url, '_blank')}
-                  className="text-xs text-blue-600 hover:text-blue-800 underline cursor-pointer"
-                >
-                  Click to view
-                </button>
-              </div>
-              <button
-                type="button"
-                onClick={() => setFormData(prev => ({ ...prev, receipt_url: '' }))}
-                className="text-slate-400 hover:text-slate-600"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-        
         <FileUpload
           value={formData.receipt_url}
           onChange={(value) => setFormData(prev => ({ ...prev, receipt_url: value }))}
@@ -868,10 +830,6 @@ interface ExpenseViewModalProps {
 function ExpenseViewModal({ expense, categories, budgets, getBudgetDisplayName, onEdit, onDelete }: ExpenseViewModalProps) {
   const category = categories.find(cat => cat.category_id === expense.category_id)
   const budget = budgets.find(bud => bud.budget_id === expense.budget_id)
-  
-  // Debug: Log expense data to see if receipt_url is present
-  console.log('ExpenseViewModal - expense data:', expense)
-  console.log('ExpenseViewModal - receipt_url:', expense.receipt_url)
 
                 return (
     <div className="space-y-4">
@@ -923,9 +881,9 @@ function ExpenseViewModal({ expense, categories, budgets, getBudgetDisplayName, 
           </div>
         )}
         
-        {expense.receipt_url && (
-          <div>
-            <span className="text-slate-600 block mb-2">Receipt:</span>
+        <div>
+          <span className="text-slate-600 block mb-2">Receipt:</span>
+          {expense.receipt_url ? (
             <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
               <div className="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -942,8 +900,19 @@ function ExpenseViewModal({ expense, categories, budgets, getBudgetDisplayName, 
                 </button>
               </div>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
+              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
+                <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="text-sm text-slate-500">No receipt attached</p>
+              </div>
+            </div>
+          )}
+        </div>
           </div>
           
       <div className="flex space-x-3 pt-4">

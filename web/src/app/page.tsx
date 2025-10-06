@@ -35,12 +35,12 @@ export default function DashboardPage() {
           <div className="mb-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Dashboard</h1>
-                <p className="text-slate-600 mt-1">Welcome back! Here's your financial overview</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-gray-100">Dashboard</h1>
+                <p className="text-slate-600 dark:text-gray-400 mt-1">Welcome back! Here's your financial overview</p>
               </div>
               <div className="text-right">
-                <p className="text-sm text-slate-500">Current Month</p>
-                <p className="text-xl sm:text-2xl font-bold">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+                <p className="text-sm text-slate-500 dark:text-gray-400">Current Month</p>
+                <p className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-gray-100">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
               </div>
             </div>
           </div>
@@ -48,42 +48,42 @@ export default function DashboardPage() {
 
           {/* Quick Actions */}
           <div className="mt-6">
-            <h2 className="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h2>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-gray-100 mb-4">Quick Actions</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <a href="/expenses" className="bg-white rounded-lg p-4 border border-slate-200 hover:shadow-md transition-shadow text-center group">
+              <a href="/expenses" className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-slate-200 dark:border-gray-700 hover:shadow-md transition-shadow text-center group">
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-blue-200 transition-colors">
                   <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                 </div>
-                <p className="text-sm font-medium text-slate-900">Add Expense</p>
+                <p className="text-sm font-medium text-slate-900 dark:text-gray-100">Add Expense</p>
               </a>
               
-              <a href="/budgets" className="bg-white rounded-lg p-4 border border-slate-200 hover:shadow-md transition-shadow text-center group">
+              <a href="/budgets" className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-slate-200 dark:border-gray-700 hover:shadow-md transition-shadow text-center group">
                 <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-green-200 transition-colors">
                   <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <p className="text-sm font-medium text-slate-900">Add Budget</p>
+                <p className="text-sm font-medium text-slate-900 dark:text-gray-100">Add Budget</p>
               </a>
               
-              <a href="/analytics" className="bg-white rounded-lg p-4 border border-slate-200 hover:shadow-md transition-shadow text-center group">
+              <a href="/analytics" className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-slate-200 dark:border-gray-700 hover:shadow-md transition-shadow text-center group">
                 <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-purple-200 transition-colors">
                   <svg className="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
-                <p className="text-sm font-medium text-slate-900">View Analytics</p>
+                <p className="text-sm font-medium text-slate-900 dark:text-gray-100">View Analytics</p>
               </a>
               
-              <a href="/expenses" className="bg-white rounded-lg p-4 border border-slate-200 hover:shadow-md transition-shadow text-center group">
+              <a href="/expenses" className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-slate-200 dark:border-gray-700 hover:shadow-md transition-shadow text-center group">
                 <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-orange-200 transition-colors">
                   <svg className="w-5 h-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                   </svg>
                 </div>
-                <p className="text-sm font-medium text-slate-900">View Expenses</p>
+                <p className="text-sm font-medium text-slate-900 dark:text-gray-100">View Expenses</p>
               </a>
             </div>
           </div>

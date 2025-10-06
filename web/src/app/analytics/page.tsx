@@ -86,18 +86,18 @@ function ChartWrapper({ children, title, className = "", height = 300 }: {
   
   if (!isClient || !isReady) {
     return (
-      <div className={`bg-white rounded-lg border border-slate-200 p-6 ${className}`} style={{ minHeight: `${height}px` }}>
-        <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
+      <div className={`bg-white dark:bg-gray-800 rounded-lg border border-slate-200 dark:border-gray-700 p-6 ${className}`} style={{ minHeight: `${height}px` }}>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-gray-100 mb-4">{title}</h3>
         <div className="flex items-center justify-center" style={{ height: `${height - 60}px` }}>
-          <div className="text-slate-500">Loading chart...</div>
+          <div className="text-slate-500 dark:text-gray-400">Loading chart...</div>
         </div>
       </div>
     )
   }
   
   return (
-    <div className={`bg-white rounded-lg border border-slate-200 p-6 ${className}`} style={{ minHeight: `${height}px` }}>
-      <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
+    <div className={`bg-white dark:bg-gray-800 rounded-lg border border-slate-200 dark:border-gray-700 p-6 ${className}`} style={{ minHeight: `${height}px` }}>
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-gray-100 mb-4">{title}</h3>
       <div 
         style={{ 
           width: '100%', 
@@ -377,7 +377,7 @@ export default function AnalyticsPage() {
                 title="Spending Velocity & Transaction Patterns" 
                 height={isMobile ? 350 : 450}
               >
-                <p className="text-sm text-slate-600 mb-4">Daily spending trends and individual transaction analysis over the last 30 days</p>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-4">Daily spending trends and individual transaction analysis over the last 30 days</p>
                 <ResponsiveContainer width="100%" height="100%" minHeight={isMobile ? 280 : 350} key={`velocity-${isMobile}`}>
                   <ComposedChart data={spendingVelocity} margin={isMobile ? { top: 5, right: 5, left: 5, bottom: 5 } : { top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />

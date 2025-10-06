@@ -277,7 +277,7 @@ function BudgetsContent() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-slate-200 mb-4 flex-shrink-0">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-slate-200 dark:border-gray-700 mb-4 flex-shrink-0">
         {/* Mobile: Collapsible Filters with Toggle */}
         <div className="block sm:hidden">
           {/* Toggle Button */}
@@ -452,7 +452,7 @@ function BudgetsContent() {
               return (
                 <div
                   key={budget.budget_id}
-                  className="bg-white rounded-lg border border-slate-200 p-4 hover:shadow-md transition-shadow"
+                  className="bg-white dark:bg-gray-800 rounded-lg border border-slate-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
@@ -530,7 +530,7 @@ function BudgetsContent() {
       {/* Add/Edit Budget Form Modal */}
       {(showAddForm || editingBudget) && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-slate-900">

@@ -5,6 +5,7 @@ import { ToastProvider } from '@/contexts/ToastContext'
 import { LoadingProvider } from '@/contexts/LoadingContext'
 import { ConfirmDialogProvider } from '@/contexts/ConfirmDialogContext'
 import { DataProvider } from '@/contexts/DataContext'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 import GlobalLoader from '@/components/GlobalLoader'
 import ToastContainer from '@/components/ToastContainer'
 import ConfirmDialogContainer from '@/components/ConfirmDialogContainer'
@@ -64,19 +65,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>Expenfyre - Expense Tracker</title>
         <meta name="description" content="Modern expense tracking and financial management application" />
       </head>
-      <body>
-        <ToastProvider>
-          <LoadingProvider>
-            <ConfirmDialogProvider>
-              <DataProviderWrapper>
-                {children}
-                <GlobalLoader />
-                <ToastContainer />
-                <ConfirmDialogContainer />
-              </DataProviderWrapper>
-            </ConfirmDialogProvider>
-          </LoadingProvider>
-        </ToastProvider>
+      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+        <ThemeProvider>
+          <ToastProvider>
+            <LoadingProvider>
+              <ConfirmDialogProvider>
+                <DataProviderWrapper>
+                  {children}
+                  <GlobalLoader />
+                  <ToastContainer />
+                  <ConfirmDialogContainer />
+                </DataProviderWrapper>
+              </ConfirmDialogProvider>
+            </LoadingProvider>
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

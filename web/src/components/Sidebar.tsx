@@ -51,11 +51,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, sidebarCollapsed,
   ]
 
   return (
-    <div className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-slate-200 flex flex-col transform transition-all duration-300 ease-in-out ${
+    <div className={`fixed inset-y-0 left-0 z-50 bg-white dark:bg-gray-800 border-r border-slate-200 dark:border-gray-700 flex flex-col transform transition-all duration-300 ease-in-out ${
       sidebarOpen ? 'translate-x-0' : '-translate-x-full'
     } ${sidebarCollapsed ? 'lg:-translate-x-full' : 'lg:translate-x-0 w-64'}`}>
       {/* Logo Section */}
-      <div className="p-6 border-b border-slate-200">
+      <div className="p-6 border-b border-slate-200 dark:border-gray-700">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
@@ -65,7 +65,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, sidebarCollapsed,
           </div>
           <div>
             <h1 className="text-xl font-bold gradient-text">Expenfyre</h1>
-            <p className="text-xs text-slate-500">Expense Tracker</p>
+            <p className="text-xs text-slate-500 dark:text-gray-400">Expense Tracker</p>
           </div>
         </div>
       </div>
@@ -80,8 +80,8 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, sidebarCollapsed,
               href={item.href}
               className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
                 isActive
-                  ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
+                  : 'text-slate-600 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 hover:text-slate-900 dark:hover:text-gray-100'
               }`}
             >
               {item.icon}

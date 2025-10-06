@@ -133,7 +133,6 @@ export class ExpensesService {
       }))
 
       console.log('[EXPENSES] All expenses before filtering:', expenses)
-      console.log('[EXPENSES] Sample expense receipt_url:', expenses[0]?.receipt_url)
 
       // Get user's groups to determine access
       const { GroupsService } = await import('./groups.service')
@@ -585,10 +584,8 @@ export class ExpensesService {
 
       const headers = rows[0]
       const dataRows = rows.slice(1)
-      console.log('[EXPENSES] Expense headers:', headers)
-      console.log('[EXPENSES] Expense data rows:', dataRows)
-      console.log('[EXPENSES] receiptUrlIndex:', receiptUrlIndex)
-      console.log('[EXPENSES] Sample row with receipt_url:', dataRows[0]?.[receiptUrlIndex])
+      console.log('[EXPENSES] Budget headers:', headers)
+      console.log('[EXPENSES] Budget data rows:', dataRows)
 
       const budgets = dataRows.map(row => ({
         budget_id: row[0] || '',

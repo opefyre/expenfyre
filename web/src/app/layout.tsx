@@ -5,7 +5,6 @@ import { ToastProvider } from '@/contexts/ToastContext'
 import { LoadingProvider } from '@/contexts/LoadingContext'
 import { ConfirmDialogProvider } from '@/contexts/ConfirmDialogContext'
 import { DataProvider } from '@/contexts/DataContext'
-import { ThemeProvider } from '@/contexts/ThemeContext'
 import GlobalLoader from '@/components/GlobalLoader'
 import ToastContainer from '@/components/ToastContainer'
 import ConfirmDialogContainer from '@/components/ConfirmDialogContainer'
@@ -66,20 +65,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="description" content="Modern expense tracking and financial management application" />
       </head>
       <body>
-        <ThemeProvider>
-          <ToastProvider>
-            <LoadingProvider>
-              <ConfirmDialogProvider>
-                <DataProviderWrapper>
-                  {children}
-                  <GlobalLoader />
-                  <ToastContainer />
-                  <ConfirmDialogContainer />
-                </DataProviderWrapper>
-              </ConfirmDialogProvider>
-            </LoadingProvider>
-          </ToastProvider>
-        </ThemeProvider>
+        <ToastProvider>
+          <LoadingProvider>
+            <ConfirmDialogProvider>
+              <DataProviderWrapper>
+                {children}
+                <GlobalLoader />
+                <ToastContainer />
+                <ConfirmDialogContainer />
+              </DataProviderWrapper>
+            </ConfirmDialogProvider>
+          </LoadingProvider>
+        </ToastProvider>
       </body>
     </html>
   );

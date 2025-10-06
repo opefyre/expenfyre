@@ -65,7 +65,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, sidebarCollapsed,
           </div>
           <div>
             <h1 className="text-xl font-bold gradient-text">Expenfyre</h1>
-            <p className="text-xs text-slate-500">Personal Expense Tracker</p>
+            <p className="text-xs text-slate-500">Expense Tracker</p>
           </div>
         </div>
       </div>

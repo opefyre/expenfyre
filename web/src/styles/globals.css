@@ -7,11 +7,11 @@
 
 @layer base {
   * {
-    @apply border-slate-200 dark:border-gray-700;
+    @apply border-slate-200;
   }
   
   body {
-    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-sans antialiased;
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 font-sans antialiased;
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   
@@ -23,7 +23,7 @@
 @layer components {
   /* Modern Glass Morphism Card */
   .glass-card {
-    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-white/20 dark:border-gray-700/20 shadow-2xl;
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl;
   }
   
   /* Premium Button Styles */
@@ -38,10 +38,10 @@
   }
   
   .btn-secondary {
-    @apply relative overflow-hidden bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-slate-700 dark:text-gray-300 font-medium 
-           px-8 py-3 rounded-xl border border-slate-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl 
+    @apply relative overflow-hidden bg-white/90 backdrop-blur-sm text-slate-700 font-medium 
+           px-8 py-3 rounded-xl border border-slate-200/50 shadow-lg hover:shadow-xl 
            transform hover:scale-105 transition-all duration-300 ease-out
-           hover:bg-white dark:hover:bg-gray-800 hover:border-slate-300/50 dark:hover:border-gray-600/50;
+           hover:bg-white hover:border-slate-300/50;
   }
   
   .btn-danger {
@@ -83,10 +83,9 @@
   
   /* Modern Input */
   .input-modern {
-    @apply w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-slate-200/50 dark:border-gray-700/50 
+    @apply w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-slate-200/50 
            rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 
-           focus:border-blue-500 transition-all duration-300 placeholder-slate-400 dark:placeholder-gray-500
-           text-slate-900 dark:text-gray-100;
+           focus:border-blue-500 transition-all duration-300 placeholder-slate-400;
   }
   
   /* Loading Spinner */
@@ -146,11 +145,6 @@ body {
   max-width: 100vw; /* Ensure body doesn't exceed viewport width */
 }
 
-.dark body {
-  background-color: #111827;
-  color: #f9fafb;
-}
-
 /* Custom Component Styles */
 .nav-link {
   display: flex;
@@ -173,20 +167,6 @@ body {
   border: 1px solid #bfdbfe;
 }
 
-.dark .nav-link {
-  color: #d1d5db;
-}
-
-.dark .nav-link:hover {
-  background-color: #374151;
-}
-
-.dark .nav-link.active {
-  background-color: #1e3a8a;
-  color: #93c5fd;
-  border: 1px solid #3b82f6;
-}
-
 .card {
   background-color: white;
   border-radius: 0.75rem;
@@ -206,23 +186,6 @@ body {
 .card-interactive:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-color: #d1d5db;
-}
-
-.dark .card {
-  background-color: #1f2937;
-  border: 1px solid #374151;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.dark .card-interactive {
-  background-color: #1f2937;
-  border: 1px solid #374151;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.dark .card-interactive:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  border-color: #4b5563;
 }
 
 .btn-primary {

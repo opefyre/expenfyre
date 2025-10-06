@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { User } from '@/lib/auth'
 import Layout from '@/components/Layout'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
 const mockUser: User = {
   id: 'test-user-id',
@@ -12,6 +13,13 @@ const mockUser: User = {
 
 const mockOnSignOut = jest.fn()
 
+// Test wrapper component that provides necessary contexts
+const TestWrapper = ({ children }: { children: React.ReactNode }) => (
+  <ThemeProvider>
+    {children}
+  </ThemeProvider>
+)
+
 describe('Layout Component', () => {
   beforeEach(() => {
     mockOnSignOut.mockClear()
@@ -19,9 +27,11 @@ describe('Layout Component', () => {
 
   it('renders layout with user information', () => {
     render(
-      <Layout user={mockUser} currentPage="/" onSignOut={mockOnSignOut}>
-        <div>Test Content</div>
-      </Layout>
+      <TestWrapper>
+        <Layout user={mockUser} currentPage="/" onSignOut={mockOnSignOut}>
+          <div>Test Content</div>
+        </Layout>
+      </TestWrapper>
     )
 
     expect(screen.getByText('Test Content')).toBeInTheDocument()
@@ -30,9 +40,11 @@ describe('Layout Component', () => {
 
   it('renders sidebar navigation', () => {
     render(
-      <Layout user={mockUser} currentPage="/" onSignOut={mockOnSignOut}>
-        <div>Test Content</div>
-      </Layout>
+      <TestWrapper>
+        <Layout user={mockUser} currentPage="/" onSignOut={mockOnSignOut}>
+          <div>Test Content</div>
+        </Layout>
+      </TestWrapper>
     )
 
     expect(screen.getByText('Dashboard')).toBeInTheDocument()
@@ -43,9 +55,11 @@ describe('Layout Component', () => {
 
   it('highlights current page in navigation', () => {
     render(
-      <Layout user={mockUser} currentPage="/expenses" onSignOut={mockOnSignOut}>
-        <div>Test Content</div>
-      </Layout>
+      <TestWrapper>
+        <Layout user={mockUser} currentPage="/expenses" onSignOut={mockOnSignOut}>
+          <div>Test Content</div>
+        </Layout>
+      </TestWrapper>
     )
 
     // The current page highlighting is handled by the Sidebar component
@@ -55,9 +69,11 @@ describe('Layout Component', () => {
 
   it('renders footer with copyright', () => {
     render(
-      <Layout user={mockUser} currentPage="/" onSignOut={mockOnSignOut}>
-        <div>Test Content</div>
-      </Layout>
+      <TestWrapper>
+        <Layout user={mockUser} currentPage="/" onSignOut={mockOnSignOut}>
+          <div>Test Content</div>
+        </Layout>
+      </TestWrapper>
     )
 
     expect(screen.getByText('© 2025 Expenfyre')).toBeInTheDocument()

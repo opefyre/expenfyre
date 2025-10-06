@@ -61,15 +61,15 @@ function ToastComponent({ toast, onRemove }: ToastProps) {
     
     switch (toast.type) {
       case 'success':
-        return `${baseStyles} bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-100`
+        return `${baseStyles} bg-emerald-50 dark:bg-emerald-900 border-emerald-200 dark:border-emerald-700 text-emerald-900 dark:text-emerald-50`
       case 'error':
-        return `${baseStyles} bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-900 dark:text-red-100`
+        return `${baseStyles} bg-red-50 dark:bg-red-900 border-red-200 dark:border-red-700 text-red-900 dark:text-red-50`
       case 'warning':
-        return `${baseStyles} bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-100`
+        return `${baseStyles} bg-amber-50 dark:bg-amber-900 border-amber-200 dark:border-amber-700 text-amber-900 dark:text-amber-50`
       case 'info':
-        return `${baseStyles} bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-100`
+        return `${baseStyles} bg-blue-50 dark:bg-blue-900 border-blue-200 dark:border-blue-700 text-blue-900 dark:text-blue-50`
       default:
-        return `${baseStyles} bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100`
+        return `${baseStyles} bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 text-gray-900 dark:text-gray-100`
     }
   }
 

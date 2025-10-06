@@ -36,7 +36,7 @@ export default function Header({ user, onSignOut, onToggleSidebar, onToggleColla
           {/* Mobile Sidebar Toggle */}
           <button
             onClick={onToggleSidebar}
-            className="p-2 rounded-lg text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors lg:hidden"
+            className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors lg:hidden"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -46,7 +46,7 @@ export default function Header({ user, onSignOut, onToggleSidebar, onToggleColla
           {/* Desktop Sidebar Collapse Toggle */}
           <button
             onClick={onToggleCollapse}
-            className="hidden lg:flex p-2 rounded-lg text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors"
+            className="hidden lg:flex p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -62,7 +62,7 @@ export default function Header({ user, onSignOut, onToggleSidebar, onToggleColla
           <div className="relative" data-dropdown>
           <button 
             onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-            className="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors"
+            className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
             {user?.picture && (
               <img
@@ -71,7 +71,7 @@ export default function Header({ user, onSignOut, onToggleSidebar, onToggleColla
                 className="w-8 h-8 rounded-lg"
               />
             )}
-            <svg className="w-4 h-4 text-slate-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>

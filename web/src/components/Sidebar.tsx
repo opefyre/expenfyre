@@ -65,7 +65,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, sidebarCollapsed,
           </div>
           <div>
             <h1 className="text-xl font-bold gradient-text">Expenfyre</h1>
-            <p className="text-xs text-slate-500 dark:text-gray-400">Expense Tracker</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Expense Tracker</p>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, sidebarCollapsed,
               className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
                 isActive
                   ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
-                  : 'text-slate-600 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 hover:text-slate-900 dark:hover:text-gray-100'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100'
               }`}
             >
               {item.icon}

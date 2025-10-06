@@ -33,7 +33,7 @@ export default function Select({ value, onChange, options, placeholder = "Select
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-gray-600 rounded-lg focus:ring-1 focus:ring-slate-400 dark:focus:ring-gray-500 focus:border-slate-400 dark:focus:border-gray-500 transition-colors text-left flex items-center justify-between bg-white dark:bg-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600"
+        className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors text-left flex items-center justify-between bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
       >
         <span className={selectedOption ? 'text-slate-900 dark:text-gray-100' : 'text-slate-500 dark:text-gray-400'}>
           {selectedOption ? selectedOption.label : placeholder}

@@ -188,11 +188,11 @@ export default function DashboardPage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center p-4">
+      <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4">
         <div className="w-full max-w-sm mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-black mb-2">Expenfyre</h1>
-            <p className="text-gray-600">Sign in to continue</p>
+            <h1 className="text-3xl font-bold text-black dark:text-white mb-2">Expenfyre</h1>
+            <p className="text-gray-600 dark:text-gray-400">Sign in to continue</p>
             </div>
             
                 <button

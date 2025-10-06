@@ -61,15 +61,15 @@ function ToastComponent({ toast, onRemove }: ToastProps) {
     
     switch (toast.type) {
       case 'success':
-        return `${baseStyles} bg-emerald-50 border-emerald-200 text-emerald-900`
+        return `${baseStyles} bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-100`
       case 'error':
-        return `${baseStyles} bg-red-50 border-red-200 text-red-900`
+        return `${baseStyles} bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-900 dark:text-red-100`
       case 'warning':
-        return `${baseStyles} bg-amber-50 border-amber-200 text-amber-900`
+        return `${baseStyles} bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-100`
       case 'info':
-        return `${baseStyles} bg-blue-50 border-blue-200 text-blue-900`
+        return `${baseStyles} bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-100`
       default:
-        return `${baseStyles} bg-slate-50 border-slate-200 text-slate-900`
+        return `${baseStyles} bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100`
     }
   }
 
@@ -128,7 +128,7 @@ function ToastComponent({ toast, onRemove }: ToastProps) {
           {/* Close Button */}
           <button
             onClick={handleRemove}
-            className="flex-shrink-0 p-1 rounded-lg hover:bg-black/5 transition-colors"
+            className="flex-shrink-0 p-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

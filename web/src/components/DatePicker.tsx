@@ -113,31 +113,31 @@ export default function DatePicker({ value, onChange, placeholder = "Select date
         onChange={() => {}} // Controlled by the date picker
         onClick={() => setIsOpen(!isOpen)}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-1 focus:ring-slate-400 focus:border-slate-400 cursor-pointer ${className}`}
+        className={`w-full px-3 py-2 text-sm border border-slate-200 dark:border-gray-600 rounded-lg focus:ring-1 focus:ring-slate-400 dark:focus:ring-gray-500 focus:border-slate-400 dark:focus:border-gray-500 cursor-pointer bg-white dark:bg-gray-700 text-slate-900 dark:text-gray-100 placeholder-slate-500 dark:placeholder-gray-400 ${className}`}
         readOnly
       />
       
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="absolute top-full left-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg z-50 min-w-64"
+          className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg shadow-lg z-50 min-w-64"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-3 border-b border-slate-100">
+          <div className="flex items-center justify-between p-3 border-b border-slate-100 dark:border-gray-700">
             <button
               onClick={() => navigateMonth('prev')}
-              className="p-1 hover:bg-slate-100 rounded transition-colors"
+              className="p-1 hover:bg-slate-100 dark:hover:bg-gray-700 rounded transition-colors"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <h3 className="text-sm font-medium text-slate-900">
+            <h3 className="text-sm font-medium text-slate-900 dark:text-gray-100">
               {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
             </h3>
             <button
               onClick={() => navigateMonth('next')}
-              className="p-1 hover:bg-slate-100 rounded transition-colors"
+              className="p-1 hover:bg-slate-100 dark:hover:bg-gray-700 rounded transition-colors"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -148,7 +148,7 @@ export default function DatePicker({ value, onChange, placeholder = "Select date
           {/* Day names */}
           <div className="grid grid-cols-7 gap-1 p-2">
             {dayNames.map(day => (
-              <div key={day} className="text-xs text-slate-500 text-center py-2">
+              <div key={day} className="text-xs text-slate-500 dark:text-gray-400 text-center py-2">
                 {day}
               </div>
             ))}
@@ -163,10 +163,10 @@ export default function DatePicker({ value, onChange, placeholder = "Select date
                 disabled={!date}
                 className={`
                   w-8 h-8 text-xs rounded transition-colors
-                  ${!date ? 'cursor-default' : 'hover:bg-slate-100 cursor-pointer'}
-                  ${date && isToday(date) ? 'bg-slate-100 font-medium' : ''}
-                  ${date && isSelected(date) ? 'bg-slate-900 text-white hover:bg-slate-800' : ''}
-                  ${date && !isSelected(date) && !isToday(date) ? 'text-slate-700' : ''}
+                  ${!date ? 'cursor-default' : 'hover:bg-slate-100 dark:hover:bg-gray-700 cursor-pointer'}
+                  ${date && isToday(date) ? 'bg-slate-100 dark:bg-gray-700 font-medium' : ''}
+                  ${date && isSelected(date) ? 'bg-slate-900 dark:bg-blue-600 text-white hover:bg-slate-800 dark:hover:bg-blue-700' : ''}
+                  ${date && !isSelected(date) && !isToday(date) ? 'text-slate-700 dark:text-gray-300' : ''}
                 `}
               >
                 {date ? date.getDate() : ''}
@@ -175,13 +175,13 @@ export default function DatePicker({ value, onChange, placeholder = "Select date
           </div>
 
           {/* Today button */}
-          <div className="p-2 border-t border-slate-100">
+          <div className="p-2 border-t border-slate-100 dark:border-gray-700">
             <button
               onClick={() => {
                 const today = new Date()
                 handleDateSelect(today)
               }}
-              className="w-full text-xs text-slate-600 hover:text-slate-900 py-1"
+              className="w-full text-xs text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-gray-200 py-1"
             >
               Today
             </button>

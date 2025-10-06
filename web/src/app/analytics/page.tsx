@@ -491,11 +491,11 @@ export default function AnalyticsPage() {
               {/* 5. Budget Performance */}
               {budgetPerformance.length > 0 && isClient && (
                 <ChartWrapper title="Budget Performance" className="lg:col-span-1">
-                  <div className="space-y-3 max-h-[300px] overflow-y-auto">
+                  <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
                     {budgetPerformance.map((perf, index) => (
-                      <div key={index} className="border border-slate-100 rounded-lg p-3">
+                      <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-800">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-slate-700">{perf.category_name}</span>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 truncate">{perf.category_name}</span>
                           <span className={`text-xs px-2 py-1 rounded-full ${
                             perf.status === 'over' ? 'bg-red-100 text-red-700' :
                             perf.status === 'near' ? 'bg-orange-100 text-orange-700' :
@@ -504,7 +504,7 @@ export default function AnalyticsPage() {
                             {perf.utilization_percentage.toFixed(0)}%
                           </span>
                         </div>
-                        <div className="w-full bg-slate-100 rounded-full h-2 mb-2">
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
                           <div 
                             className={`h-2 rounded-full ${
                               perf.status === 'over' ? 'bg-red-500' :
@@ -514,9 +514,9 @@ export default function AnalyticsPage() {
                             style={{ width: `${Math.min(perf.utilization_percentage, 100)}%` }}
                           />
                         </div>
-                        <div className="flex justify-between text-xs text-slate-500">
-                          <span>Spent: {formatCurrency(perf.spent_amount)}</span>
-                          <span>Budget: {formatCurrency(perf.budget_amount)}</span>
+                        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+                          <span className="truncate">Spent: {formatCurrency(perf.spent_amount)}</span>
+                          <span className="truncate">Budget: {formatCurrency(perf.budget_amount)}</span>
                         </div>
                       </div>
                     ))}

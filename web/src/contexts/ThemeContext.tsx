@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 type Theme = 'light' | 'dark'
 
@@ -12,52 +12,46 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+interface ThemeProviderProps {
+  children: ReactNode
+}
+
+export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>('light')
   const [mounted, setMounted] = useState(false)
 
-  // Initialize theme from localStorage or system preference
+  // Load theme from localStorage on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as Theme
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    
     const initialTheme = savedTheme || systemTheme
+    
     setThemeState(initialTheme)
     setMounted(true)
+    
+    // Apply theme to document
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark')
   }, [])
 
-  // Apply theme to document and save to localStorage
+  // Update document class when theme changes
   useEffect(() => {
     if (mounted) {
-      const root = document.documentElement
-      
-      if (theme === 'dark') {
-        root.classList.add('dark')
-      } else {
-        root.classList.remove('dark')
-      }
-      
+      document.documentElement.classList.toggle('dark', theme === 'dark')
       localStorage.setItem('theme', theme)
-      
-      // Update meta theme-color for mobile browsers
-      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
-      if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', theme === 'dark' ? '#1f2937' : '#3b82f6')
-      }
     }
   }, [theme, mounted])
 
   const toggleTheme = () => {
-    setThemeState(prevTheme => prevTheme === 'light' ? 'dark' : 'light')
+    setThemeState(prev => prev === 'light' ? 'dark' : 'light')
   }
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme)
   }
 
-  // Don't render until mounted to prevent hydration mismatch
+  // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
-    return null
+    return <div style={{ visibility: 'hidden' }}>{children}</div>
   }
 
   return (

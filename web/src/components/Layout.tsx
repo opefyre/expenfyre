@@ -17,7 +17,7 @@ export default function Layout({ children, user, currentPage, onSignOut }: Layou
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   return (
-    <div className="h-screen bg-slate-50 dark:bg-gray-900 overflow-hidden w-full max-w-full transition-colors duration-200">
+    <div className="h-screen bg-slate-50 dark:bg-gray-900 overflow-hidden w-full max-w-full">
       {/* Sidebar Overlay */}
       {sidebarOpen && (
         <div 
@@ -59,7 +59,7 @@ export default function Layout({ children, user, currentPage, onSignOut }: Layou
           </main>
 
           {/* Footer - Fixed at bottom */}
-          <footer className="bg-white dark:bg-gray-800 border-t border-slate-200 dark:border-gray-700 px-3 sm:px-6 py-4 flex-shrink-0 w-full transition-colors duration-200">
+          <footer className="bg-white dark:bg-gray-800 border-t border-slate-200 dark:border-gray-700 px-3 sm:px-6 py-4 flex-shrink-0 w-full">
             <div className="flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500 dark:text-gray-400 space-y-2 sm:space-y-0 max-w-7xl mx-auto">
               <div className="flex items-center space-x-2 sm:space-x-4">
                 <span>© 2025 Expenfyre</span>

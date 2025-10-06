@@ -262,8 +262,8 @@ function BudgetsContent() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4 flex-shrink-0">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Budgets</h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-1">Manage your monthly budgets and track spending</p>
+          <h1 className="text-2xl font-bold text-slate-900">Budgets</h1>
+          <p className="text-slate-600 mt-1">Manage your monthly budgets and track spending</p>
         </div>
         <button
           onClick={() => setShowAddForm(true)}
@@ -277,16 +277,16 @@ function BudgetsContent() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-slate-200 dark:border-gray-700 mb-4 flex-shrink-0">
+      <div className="bg-white rounded-lg border border-slate-200 mb-4 flex-shrink-0">
         {/* Mobile: Collapsible Filters with Toggle */}
         <div className="block sm:hidden">
           {/* Toggle Button */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="w-full flex items-center justify-between p-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            className="w-full flex items-center justify-between p-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
           >
             <div className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
               </svg>
               <span>Filters</span>
@@ -296,7 +296,7 @@ function BudgetsContent() {
                 </span>
               )}
             </div>
-            <svg className={`w-5 h-5 text-gray-400 dark:text-gray-500 transition-transform ${showFilters ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className={`w-5 h-5 text-slate-400 transition-transform ${showFilters ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
@@ -308,7 +308,7 @@ function BudgetsContent() {
                 {/* Search - Full Width */}
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-5 w-5 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                   </div>
@@ -317,7 +317,7 @@ function BudgetsContent() {
                     placeholder="Search budgets..."
                     value={filters.search}
                     onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-600 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
                 
@@ -325,7 +325,7 @@ function BudgetsContent() {
                 <div className="grid grid-cols-2 gap-2">
                   {/* Category Filter */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Category</label>
+                    <label className="block text-xs font-medium text-slate-700 mb-1">Category</label>
                     <Select
                       value={filters.category_id}
                       onChange={(value) => setFilters(prev => ({ ...prev, category_id: value }))}
@@ -339,7 +339,7 @@ function BudgetsContent() {
 
                   {/* Month Filter */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Month</label>
+                    <label className="block text-xs font-medium text-slate-700 mb-1">Month</label>
                     <MonthYearPicker
                       value={filters.month}
                       onChange={(value) => setFilters(prev => ({ ...prev, month: value }))}
@@ -452,7 +452,7 @@ function BudgetsContent() {
               return (
                 <div
                   key={budget.budget_id}
-                  className="bg-white dark:bg-gray-800 rounded-lg border border-slate-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg border border-slate-200 p-4 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
@@ -530,10 +530,10 @@ function BudgetsContent() {
       {/* Add/Edit Budget Form Modal */}
       {(showAddForm || editingBudget) && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                <h2 className="text-lg font-semibold text-slate-900">
                   {editingBudget ? 'Edit Budget' : 'Add New Budget'}
                 </h2>
                 <button
@@ -541,7 +541,7 @@ function BudgetsContent() {
                     setShowAddForm(false)
                     setEditingBudget(null)
                   }}
-                  className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+                  className="text-slate-400 hover:text-slate-600"
                 >
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

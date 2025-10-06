@@ -33,13 +33,13 @@ export default function Select({ value, onChange, options, placeholder = "Select
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors text-left flex items-center justify-between bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+        className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-1 focus:ring-slate-400 focus:border-slate-400 transition-colors text-left flex items-center justify-between bg-white hover:bg-slate-50"
       >
-        <span className={selectedOption ? 'text-slate-900 dark:text-gray-100' : 'text-slate-500 dark:text-gray-400'}>
+        <span className={selectedOption ? 'text-slate-900' : 'text-slate-500'}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <svg 
-          className={`w-4 h-4 text-slate-400 dark:text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} 
+          className={`w-4 h-4 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -50,7 +50,7 @@ export default function Select({ value, onChange, options, placeholder = "Select
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
           {options.map((option) => (
             <button
               key={option.value}
@@ -59,10 +59,10 @@ export default function Select({ value, onChange, options, placeholder = "Select
                 onChange(option.value)
                 setIsOpen(false)
               }}
-              className={`w-full px-3 py-2 text-sm text-left hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors first:rounded-t-lg last:rounded-b-lg ${
+              className={`w-full px-3 py-2 text-sm text-left hover:bg-slate-100 transition-colors first:rounded-t-lg last:rounded-b-lg ${
                 option.value === value 
-                  ? 'bg-slate-100 dark:bg-gray-700 text-slate-900 dark:text-gray-100 font-medium' 
-                  : 'text-slate-700 dark:text-gray-300'
+                  ? 'bg-slate-100 text-slate-900 font-medium' 
+                  : 'text-slate-700'
               }`}
             >
               {option.label}

@@ -65,13 +65,13 @@ export default function TagInput({ value, onChange, placeholder = "Add tags...",
           {tags.map((tag, index) => (
             <span
               key={index}
-              className="inline-flex items-center px-2.5 py-1 bg-slate-100 dark:bg-gray-700 text-slate-700 dark:text-gray-300 text-sm rounded-md group hover:bg-slate-200 dark:hover:bg-gray-600 transition-colors"
+              className="inline-flex items-center px-2.5 py-1 bg-slate-100 text-slate-700 text-sm rounded-md group hover:bg-slate-200 transition-colors"
             >
               {tag}
               <button
                 type="button"
                 onClick={() => removeTag(tag)}
-                className="ml-1.5 text-slate-400 dark:text-gray-500 hover:text-slate-600 dark:hover:text-gray-300 transition-colors"
+                className="ml-1.5 text-slate-400 hover:text-slate-600 transition-colors"
                 aria-label={`Remove ${tag} tag`}
               >
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,11 +92,11 @@ export default function TagInput({ value, onChange, placeholder = "Add tags...",
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
         placeholder={tags.length === 0 ? placeholder : "Add another tag..."}
-        className="w-full px-3 py-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+        className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:ring-1 focus:ring-slate-400 focus:border-slate-400 transition-colors"
       />
 
       {/* Helper Text */}
-      <p className="text-xs text-slate-500 dark:text-gray-400 mt-1">
+      <p className="text-xs text-slate-500 mt-1">
         Press Enter, Tab, or tap outside to add tags
       </p>
     </div>

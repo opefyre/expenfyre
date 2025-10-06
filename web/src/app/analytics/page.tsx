@@ -260,8 +260,8 @@ export default function AnalyticsPage() {
       <div className="h-full flex flex-col">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 flex-shrink-0">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">Analytics</h1>
-            <p className="text-sm text-slate-500 mt-1">Key insights and trends for your expenses</p>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-gray-100">Analytics</h1>
+            <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">Key insights and trends for your expenses</p>
           </div>
         </div>
 
@@ -272,7 +272,7 @@ export default function AnalyticsPage() {
             {/* 1. Summary Cards */}
             {summary && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl p-5 text-white">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm opacity-90">Total Spent</span>
                     <svg className="w-5 h-5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -283,7 +283,7 @@ export default function AnalyticsPage() {
                   <p className="text-xs opacity-75 mt-1">{summary.expense_count} transactions</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 text-white">
+                <div className="bg-gradient-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl p-5 text-white">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm opacity-90">Total Budget</span>
                     <svg className="w-5 h-5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -294,7 +294,7 @@ export default function AnalyticsPage() {
                   <p className="text-xs opacity-75 mt-1">{summary.budget_count} budgets</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-5 text-white">
+                <div className="bg-gradient-to-br from-amber-500 to-amber-600 dark:from-amber-600 dark:to-amber-700 rounded-xl p-5 text-white">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm opacity-90">Avg. Expense</span>
                     <svg className="w-5 h-5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -306,9 +306,9 @@ export default function AnalyticsPage() {
                 </div>
 
                 <div className={`bg-gradient-to-br rounded-xl p-5 ${
-                  summary.budget_utilization > 100 ? 'from-red-500 to-red-600 text-white' : 
-                  summary.budget_utilization > 80 ? 'from-orange-500 to-orange-600 text-white' : 
-                  'from-emerald-500 to-emerald-600 text-white'
+                  summary.budget_utilization > 100 ? 'from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 text-white' : 
+                  summary.budget_utilization > 80 ? 'from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 text-white' : 
+                  'from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 text-white'
                 }`}>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium">Budget Usage</span>
@@ -377,7 +377,7 @@ export default function AnalyticsPage() {
                 title="Spending Velocity & Transaction Patterns" 
                 height={isMobile ? 350 : 450}
               >
-                <p className="text-sm text-slate-600 dark:text-gray-400 mb-4">Daily spending trends and individual transaction analysis over the last 30 days</p>
+                <p className="text-sm text-slate-600 mb-4">Daily spending trends and individual transaction analysis over the last 30 days</p>
                 <ResponsiveContainer width="100%" height="100%" minHeight={isMobile ? 280 : 350} key={`velocity-${isMobile}`}>
                   <ComposedChart data={spendingVelocity} margin={isMobile ? { top: 5, right: 5, left: 5, bottom: 5 } : { top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
@@ -491,11 +491,11 @@ export default function AnalyticsPage() {
               {/* 5. Budget Performance */}
               {budgetPerformance.length > 0 && isClient && (
                 <ChartWrapper title="Budget Performance" className="lg:col-span-1">
-                  <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
+                  <div className="space-y-3 max-h-[300px] overflow-y-auto">
                     {budgetPerformance.map((perf, index) => (
-                      <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-800">
+                      <div key={index} className="border border-slate-100 rounded-lg p-3">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 truncate">{perf.category_name}</span>
+                          <span className="text-sm font-medium text-slate-700">{perf.category_name}</span>
                           <span className={`text-xs px-2 py-1 rounded-full ${
                             perf.status === 'over' ? 'bg-red-100 text-red-700' :
                             perf.status === 'near' ? 'bg-orange-100 text-orange-700' :
@@ -504,7 +504,7 @@ export default function AnalyticsPage() {
                             {perf.utilization_percentage.toFixed(0)}%
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
+                        <div className="w-full bg-slate-100 rounded-full h-2 mb-2">
                           <div 
                             className={`h-2 rounded-full ${
                               perf.status === 'over' ? 'bg-red-500' :
@@ -514,9 +514,9 @@ export default function AnalyticsPage() {
                             style={{ width: `${Math.min(perf.utilization_percentage, 100)}%` }}
                           />
                         </div>
-                        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                          <span className="truncate">Spent: {formatCurrency(perf.spent_amount)}</span>
-                          <span className="truncate">Budget: {formatCurrency(perf.budget_amount)}</span>
+                        <div className="flex justify-between text-xs text-slate-500">
+                          <span>Spent: {formatCurrency(perf.spent_amount)}</span>
+                          <span>Budget: {formatCurrency(perf.budget_amount)}</span>
                         </div>
                       </div>
                     ))}

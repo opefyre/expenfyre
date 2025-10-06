@@ -93,7 +93,7 @@ export default function MonthYearPicker({ value, onChange, placeholder = "Select
         onChange={() => {}} // Controlled by the picker
         onClick={() => !disabled && setIsOpen(!isOpen)}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 ${disabled ? 'cursor-not-allowed bg-gray-50 dark:bg-gray-700 text-gray-400 dark:text-gray-500' : 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-500'} ${className}`}
+        className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-1 focus:ring-slate-400 focus:border-slate-400 ${disabled ? 'cursor-not-allowed bg-slate-50 text-slate-400' : 'cursor-pointer'} ${className}`}
         readOnly
         disabled={disabled}
         required={required}
@@ -102,26 +102,26 @@ export default function MonthYearPicker({ value, onChange, placeholder = "Select
       {isOpen && !disabled && (
         <div
           ref={dropdownRef}
-          className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50 min-w-48"
+          className="absolute top-full left-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg z-50 min-w-48"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between p-3 border-b border-slate-100">
             <button
               onClick={() => navigateYear('prev')}
-              className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+              className="p-1 hover:bg-slate-100 rounded transition-colors"
             >
-              <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+            <h3 className="text-sm font-medium text-slate-900">
               {currentYear}
             </h3>
             <button
               onClick={() => navigateYear('next')}
-              className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+              className="p-1 hover:bg-slate-100 rounded transition-colors"
             >
-              <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -135,10 +135,10 @@ export default function MonthYearPicker({ value, onChange, placeholder = "Select
                 onClick={() => handleMonthSelect(index)}
                 className={`
                   px-2 py-2 text-sm rounded transition-colors text-center
-                  hover:bg-gray-100 dark:hover:bg-gray-700
-                  ${isCurrentMonth(index) ? 'bg-gray-100 dark:bg-gray-700 font-medium' : ''}
-                  ${isSelected(index) ? 'bg-blue-600 text-white hover:bg-blue-700' : ''}
-                  ${!isSelected(index) && !isCurrentMonth(index) ? 'text-gray-700 dark:text-gray-300' : ''}
+                  hover:bg-slate-100
+                  ${isCurrentMonth(index) ? 'bg-slate-100 font-medium' : ''}
+                  ${isSelected(index) ? 'bg-slate-900 text-white hover:bg-slate-800' : ''}
+                  ${!isSelected(index) && !isCurrentMonth(index) ? 'text-slate-700' : ''}
                 `}
               >
                 {month}
@@ -147,7 +147,7 @@ export default function MonthYearPicker({ value, onChange, placeholder = "Select
           </div>
 
           {/* Current Month Button */}
-          <div className="p-2 border-t border-gray-200 dark:border-gray-700">
+          <div className="p-2 border-t border-slate-100">
             <button
               onClick={() => {
                 const today = new Date()
@@ -157,7 +157,7 @@ export default function MonthYearPicker({ value, onChange, placeholder = "Select
                 onChange(formatValue(date))
                 setIsOpen(false)
               }}
-              className="w-full text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 py-1"
+              className="w-full text-xs text-slate-600 hover:text-slate-900 py-1"
             >
               Current Month
             </button>

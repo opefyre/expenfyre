@@ -2,6 +2,13 @@ import { render, screen } from '@testing-library/react'
 import { User } from '@/lib/auth'
 import Layout from '@/components/Layout'
 
+// Mock the ThemeSwitch component to avoid ThemeProvider dependency
+jest.mock('@/components/ThemeSwitch', () => {
+  return function MockThemeSwitch() {
+    return <div data-testid="theme-switch">Theme Switch</div>
+  }
+})
+
 const mockUser: User = {
   id: 'test-user-id',
   email: 'test@example.com',
